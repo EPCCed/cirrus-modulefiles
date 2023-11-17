@@ -1,0 +1,33 @@
+#%Module
+#
+ 
+# Clashes
+conflict orca
+
+proc ModulesHelp { } {
+puts stderr "ORCA 5.0.3"
+puts stderr "=============\n"
+puts stderr "ORCA is an ab initio quantum chemistry program package that"
+puts stderr "contains modern electronic structure methods including density"
+puts stderr "functional theory, many-body perturbation, coupled cluster,"
+puts stderr "multireference methods, and semi-empirical quantum chemistry"
+puts stderr "methods. Its main field of application is larger molecules,"
+puts stderr "transition metal complexes, and their spectroscopic properties."
+puts stderr "ORCA is developed in the research group of Frank Neese. The"
+puts stderr "free version is available only for academic use at academic institutions.\n"
+puts stderr "\tInstalled by: A. Turner, EPCC"
+puts stderr "\t        Date: 19 January 2023\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set ORCA_CURPATH /mnt/lustre/indy2lfs/sw/orca/5.0.3-openmpi4.1
+
+module load openmpi/4.1.4
+
+setenv ORCADIR $ORCA_CURPATH
+prepend-path  PATH   $ORCA_CURPATH
+prepend-path  LD_LIBRARY_PATH   $ORCA_CURPATH
+

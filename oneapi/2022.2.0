@@ -1,0 +1,14 @@
+#%Module1.0
+## Module file created by Adrian Jackson, EPCC
+## Date: 6th September 2022
+##
+module-whatis "OneAPI @2022.2.0"
+
+proc ModulesHelp { } {
+puts stderr "OneAPI packages Intel's latest compiler and development tools"
+puts stderr "This module loads the OneAPI modules for you to load as required"
+}
+
+conflict oneapi
+
+module use /mnt/lustre/indy2lfs/sw/oneapi/2022.2.0.191/modulefiles 

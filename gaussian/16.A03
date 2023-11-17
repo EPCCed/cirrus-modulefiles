@@ -1,0 +1,62 @@
+#%Module
+#
+ 
+# Clashes
+conflict gaussian
+
+proc ModulesHelp { } {
+puts stderr "\tGaussian16 A03"
+puts stderr "\t==============\n"
+puts stderr "\tThis module sets up your environment to access Gaussian16.\n"
+puts stderr "\tInstalled by: A. Turner, EPCC"
+puts stderr "\tDate: 8 Feb 2018\n"
+}
+
+if { [ module-info mode load ] } {
+    puts stderr "\nWarning!"
+    puts stderr "Gaussian should only be used by users who have a valid Gaussian license."
+    puts stderr "If you do not have a valid Gaussian license please unload this module"
+    puts stderr "and do not use the Gaussian software.\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set GAUSS_PRFX /mnt/lustre/indy2lfs/sw/Gaussian
+set GAUSS_CURPATH $GAUSS_PRFX/Gaussian16_RevA03
+
+setenv g16root $GAUSS_CURPATH
+
+set G16_EXE $GAUSS_CURPATH/g16/bsd:$GAUSS_CURPATH/g16/local:$GAUSS_CURPATH/g16/extras:$GAUSS_CURPATH/g16
+setenv GAUSS_EXEDIR $G16_EXE
+setenv GAUSS_LEXEDIR $GAUSS_CURPATH/g16/linda-exe
+setenv GAUSS_ARCHDIR $GAUSS_CURPATH/g16/arch
+setenv GAUSS_BSDDIR $GAUSS_CURPATH/g16/bsd
+set GV_EXE $GAUSS_CURPATH/gv
+setenv GV_DIR $GV_EXE
+
+append-path  PATH $GAUSS_CURPATH/gauopen
+append-path  PATH $G16_EXE
+append-path  PERLLIB $GAUSS_CURPATH/gauopen
+append-path  PERLLIB $G16_EXE
+append-path  PYTHONPATH $GAUSS_CURPATH/gauopen
+append-path  PYTHONPATH $G16_EXE
+prepend-path LD_LIBRARY_PATH $G16_EXE
+append-path LD_LIBRARY_PATH $GV_EXE/lib
+
+setenv _DSM_BARRIER SHM
+
+setenv G16BASIS $GAUSS_CURPATH/g16/basis
+
+set-alias sl $GAUSS_CURPATH/g16/tests/searchlog.csh
+set-alias gv $GV_EXE/gview.sh
+
+setenv PGI_TERM trace,abort
+
+
+append-path LD_LIBRARY_PATH $GAUSS_PRFX/swrast/lib
+append-path LD_LIBRARY_PATH $GAUSS_PRFX/swrast/lib/dri
+
+setenv LIBGL_DRIVERS_PATH $GAUSS_PRFX/swrast/lib/dri
+setenv LIBGL_ALWAYS_INDIRECT 1

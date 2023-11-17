@@ -1,0 +1,44 @@
+#%Module##############################
+#
+#
+conflict hdf5parallel
+
+proc ModulesHelp { } {
+  puts stderr "HDF5 1.10.6"
+  puts stderr "===========\n"
+
+  puts stderr "This module adds HDF5 to your environment."
+
+  puts stderr "Compilation instructions can be found at:\n"
+
+  puts stderr "\t* https://github.com/hpc-uk/build-instructions/tree/main/utils/HDF5\n"
+
+  puts stderr "\tInstalled: 22 March 2022"
+  puts stderr "\tInstalled by: M. Bareford, EPCC"
+
+}
+
+if ![ is-loaded gcc/8.2.0 ] {
+    puts stderr "Autoloading gcc 8.2.0"
+    module load gcc/8.2.0
+}
+if ![ is-loaded mpt/2.25 ] {
+    puts stderr "Autoloading mpt 2.25"
+    module load mpt/2.25
+}
+
+set is_module_rm [module-info mode remove]
+
+set HDF5_LEVEL 1.10.6-gcc8-mpt225
+set HDF5_CURPATH /mnt/lustre/indy2lfs/sw/hdf5parallel/$HDF5_LEVEL
+prepend-path PATH $HDF5_CURPATH/bin
+append-path MANPATH $HDF5_CURPATH/share/man
+prepend-path LD_LIBRARY_PATH $HDF5_CURPATH/lib
+prepend-path CPATH $HDF5_CURPATH/include
+
+# This hack is needed to preserve the colon at the start of MANPATH
+if { [ module-info mode remove ] } {
+   set localman ":"
+   append localman $::env(MANPATH)
+   set ::env(MANPATH) $localman
+}

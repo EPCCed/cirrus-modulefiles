@@ -1,0 +1,19 @@
+#%Module1.0
+## Module file created by Luis Cebamanos, EPCC
+## Date: 30 July 2020
+##
+
+
+module-whatis "The UDUNITS-2 package provides support for units of physical quantities. Its three main components are: 1) (udunits2lib) a C library for units of physical quantities; 2) (udunits2prog)a utility; for obtaining the definition of a unit and for converting numeric values between compatible units; and 3) an extensive database of units."
+
+proc ModulesHelp { } {
+puts stderr "The UDUNITS-2 package provides support for units of physical quantities"
+}
+
+
+prepend-path PATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26/bin"
+prepend-path LIBRARY_PATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26/lib"
+prepend-path LD_LIBRARY_PATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26/lib"
+prepend-path CPATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26/include"
+prepend-path CMAKE_PREFIX_PATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26"
+

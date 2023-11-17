@@ -1,0 +1,50 @@
+#%Module
+#
+ 
+# Clashes
+conflict vasp
+
+proc ModulesHelp { } {
+puts stderr "VASP 5.4.4"
+puts stderr "==========\n"
+puts stderr "This module sets up your environment to access VASP 5.4.4."
+puts stderr "Once this module has been loaded you can"
+puts stderr "access the VASP 5.4.4 executables as:\n"
+puts stderr "\t *'vasp_std'       - Multiple k-point (complex) version"
+puts stderr "\t *'vasp_gam'       - Gamma-point only version"
+puts stderr "\t *'vasp_ncl'       - Multiple k-point, noncollinear version"
+puts stderr "\nIf you are only interested in the gamma-point, the"
+puts stderr "gamma-point version of the code runs about 30-50%"
+puts stderr "faster than the complex code.\n"
+puts stderr "\tInstalled by: A. Turner, EPCC"
+puts stderr "\tDate: 14 Jul 2017\n"
+}
+
+if { [ module-info mode load ] } {
+    puts stderr "\nWarning!"
+    puts stderr "VASP should only be used by users who have a valid VASP 5 license."
+    puts stderr "If you do not have a valid VASP 5 license please unload this module"
+    puts stderr "and do not use the VASP 5 software.\n"
+}
+
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+module load mpt
+module load intel-compilers-19
+module load intel-cmkl-19
+module load gcc
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set VASP5_LEVEL 5.4.4-intel19-mpt220
+set VASP5_CURPATH /mnt/lustre/indy2lfs/sw/vasp5/$VASP5_LEVEL
+
+prepend-path  PATH              $VASP5_CURPATH/bin
+setenv VASP5 $VASP5_CURPATH
+setenv VASP5_VDW_KERNEL $VASP5_CURPATH/vdw_kernal/vdw_kernel.bindat
+

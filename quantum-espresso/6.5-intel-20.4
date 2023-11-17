@@ -1,0 +1,56 @@
+#%Module
+#
+# Module definition for Quantum Espresso 6.5
+#
+# Iakovos Panourgias,  EPCC, 23 Nov 2020
+
+
+proc Modules{Help {} {
+puts stderr "Quantum Espresso 6.5"
+puts stderr "====================\n"
+puts stderr "This module sets up your environment to access QE 6.5.\n"
+puts stderr "\tInstalled by: Julien Sindt, EPCC"
+puts stderr "\tDate: 13 Sept. 2022\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+
+set QE_CURPATH /mnt/lustre/indy2lfs/sw/quantum-espresso/qe-6.5-intel20.4-erb/install
+
+
+
+module load intel-20.4/compilers
+#module load intel-20.4/mpi
+module load intel-20.4/cmkl
+module load fftw/3.3.10-intel20.4
+
+
+
+
+
+
+
+#module load intel-compilers-19/19.0.0.117
+
+#############module load intel-mpi-19/19.0.0.117
+# Loading the MPI module causes a weird error
+#    and the weird 15 second timeout of the HFI device
+# The root cause seems to be that when NO module file is loaded; pw.x (and others) link with:
+#   /lustre/sw/intel/compilers_and_libraries_2018.5.274/linux/mpi/intel64/lib/release_mt/libmpi.so.12
+# When the intel-mpi-19/19.0.0.117 module is loaded; pw.x (and others) link with:
+#   /lustre/sw/intel/compilers_and_libraries_2018.5.274/linux/mpi/lib64/libmpi.so.12
+#
+# With NO MODULE loaded; pw.x (and others) work using MPI and no weird timeout error.
+# With MODULE loaded; pw.x (and others) do NOT work and you get the weird timeout error.
+
+#module load intel-cmkl-19/19.0.0.117
+#module load fftw/3.3.8-intel19
+#module load fftw/3.3.10-intel19-mpt225
+
+prepend-path PATH $QE_CURPATH/bin/
+
+setenv OMP_NUM_THREADS 1
+

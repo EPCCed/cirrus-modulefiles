@@ -1,0 +1,28 @@
+#%Module
+#
+
+# Clashes
+conflict spindle
+
+proc ModulesHelp { } {
+  puts stderr "Spindle 0.13"
+  puts stderr "============\n"
+  puts stderr "This module allows you to use Spindle, a tool for improving the library-loading performance of dynamically linked HPC applications.\n"
+  puts stderr "For further details, see https://computing.llnl.gov/projects/spindle .\n"
+  puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/utils/spindle/build_spindle_0.13_cirrus_gcc10.md \n"
+  puts stderr "Installed by: M. Bareford, EPCC"
+  puts stderr "Date: 29 August 2023\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set SPINDLE_ROOT /mnt/lustre/indy2lfs/sw/spindle/0.13
+
+prepend-path PATH $SPINDLE_ROOT/bin
+prepend-path CPATH $SPINDLE_ROOT/include
+prepend-path MANPATH $SPINDLE_ROOT/share/man
+
+prepend-path LD_LIBRARY_PATH $SPINDLE_ROOT/lib
+prepend-path LD_LIBRARY_PATH $SPINDLE_ROOT/lib/spindle

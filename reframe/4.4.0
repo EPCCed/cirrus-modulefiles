@@ -1,0 +1,4 @@
+#%Module 
+
+
+prepend-path PATH /mnt/lustre/indy2lfs/sw/reframe/reframe/bin/

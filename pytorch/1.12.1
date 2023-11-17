@@ -1,0 +1,46 @@
+#%Module
+#
+
+# Clashes
+conflict horovod
+conflict pytorch
+conflict tensorflow
+
+proc ModulesHelp { } {
+  puts stderr "PyTorch 1.12.1"
+  puts stderr "==============\n"
+  puts stderr "A Python virtual environment (venv) that provides Horovod 0.25.0, a distributed deep learning training framework,"
+  puts stderr "one that includes PyTorch 1.12.1 (https://pytorch.org/).\n"
+  puts stderr "This venv is an extension of the Miniconda3 (Python 3.9.13) environment provided by the \"python/3.9.13\" module."
+  puts stderr "MPI comms is handled by the Horovod 0.25.0 package.\n"
+  puts stderr "After you have loaded this module, simply run \"pip list\" to see the full package list.\n"
+  puts stderr "Please note, this module can only be used on the Cirrus CPU nodes.\n"
+  puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/pyenvs/horovod/build_horovod_0.25.0_cirrus_cpu.md \n"
+  puts stderr "Installed by: M. Bareford, EPCC"
+  puts stderr "Date: 12 September 2022\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set MINICONDA3_PYTHON_VERSION 3.9.13
+set MINICONDA3_PYTHON_LABEL python3.9
+
+set HOROVOD_VERSION 0.25.0
+set LIBSNDFILE_VERSION 1.0.28
+
+set HOROVOD_ROOT /mnt/lustre/indy2lfs/sw/horovod/$HOROVOD_VERSION/python/$MINICONDA3_PYTHON_VERSION
+set HOROVOD_BIN $HOROVOD_ROOT/bin
+set HOROVOD_LIB $HOROVOD_ROOT/lib
+
+module load python/$MINICONDA3_PYTHON_VERSION
+module load libsndfile/$LIBSNDFILE_VERSION
+
+prepend-path PATH $HOROVOD_BIN
+
+prepend-path LIBRARY_PATH $HOROVOD_LIB
+
+prepend-path LD_LIBRARY_PATH $HOROVOD_LIB
+
+prepend-path PYTHONPATH $HOROVOD_LIB/$MINICONDA3_PYTHON_LABEL/site-packages

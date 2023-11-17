@@ -1,0 +1,24 @@
+#%Module1.0
+## Module file created by Adria Jackson, EPCC
+## Date: January 2021
+##
+
+
+module-whatis " "
+
+proc ModulesHelp { } {
+puts stderr ""
+}
+
+# Set the path to this installation
+set MPC_CURPATH   /mnt/lustre/indy2lfs/sw/mpc/1.1.0
+
+prepend-path PATH               $MPC_CURPATH/bin
+prepend-path MANPATH            $MPC_CURPATH/share/man
+prepend-path LIBRARY_PATH       $MPC_CURPATH/lib
+prepend-path LD_LIBRARY_PATH    $MPC_CURPATH/lib
+prepend-path CPATH              $MPC_CURPATH/include
+prepend-path CPLUS_INCLUDE_PATH $MPC_CURPATH/include
+prepend-path PKG_CONFIG_PATH    $MPC_CURPATH/lib/pkgconfig
+prepend-path CMAKE_PREFIX_PATH  $MPC_CURPATH
+

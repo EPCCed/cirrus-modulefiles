@@ -1,0 +1,23 @@
+#%Module1.0
+# git 2.37.3
+
+
+module-whatis "Git is a distributed version control system"
+
+proc ModulesHelp { } {
+puts stderr "git 2.37.3"
+puts stderr "==========\n"
+
+puts stderr "Git is a free and open source distributed version control system"
+puts stderr "designed to handle everything from small to very large projects with"
+puts stderr "speed and efficiency."
+
+puts stderr "\tInstalled: 12 Sep 2022"
+puts stderr "\tInstalled by: Andy Turner, EPCC"
+
+}
+
+conflict git
+
+prepend-path PATH "/mnt/lustre/indy2lfs/sw/git/2.37.3/bin"
+prepend-path MANPATH "/mnt/lustre/indy2lfs/sw/git/2.37.3/share/man"

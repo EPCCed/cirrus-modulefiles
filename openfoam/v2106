@@ -1,0 +1,52 @@
+#%Module
+#
+# Module definition for OpenFOAM v2106 Released June 2021
+#
+# Eleanor September 2022
+
+# Clashes
+
+conflict openfoam
+
+# To run
+
+module load gcc/8.2.0
+module load mpt/2.25
+module load zlib/1.2.11
+
+# User compilations may require
+
+module load flex/2.6.4
+
+# The text to print if someone types "module help openfoam"
+
+proc ModulesHelp { } {
+  puts stderr "OpenFOAM v2106\n"
+  puts stderr "==============\n"
+  puts stderr "Provides access to OpenFOAM v2006 Release June 2020"
+}
+
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+setenv FOAM_INSTALL_PATH /mnt/lustre/indy2lfs/sw/openfoam/OpenFOAM-v2106/OpenFOAM-v2106
+setenv OPENFOAM_CURPATH /mnt/lustre/indy2lfs/sw/openfoam/OpenFOAM-v2106/OpenFOAM-v2106
+
+if { [ is-loaded openfoam/v2106 ] } {
+  # The user still has all the OpenFOAM environment variables set.
+  # One could issue a warning here.
+} else {
+
+  puts stderr  "******************** OpenFOAM v2106 ************************"
+  puts stderr  "* OpenFoam v2106 Released June 2021."
+  puts stderr  "* See https://www.openfoam.com/releases/openfoam-v2106/\n"
+  puts stderr  "* You must now source the OpenFOAM etc/bashrc file"
+  puts stderr  "* You can do this using the following command: "
+  puts stderr  "*        source \$FOAM_INSTALL_PATH/etc/bashrc "
+  puts stderr  "************************************************************"
+}
+
+
+

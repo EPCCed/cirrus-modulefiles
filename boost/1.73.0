@@ -1,0 +1,18 @@
+#%Module1.0
+
+module-whatis "Boost 1.73.0"
+
+proc ModulesHelp { } {
+puts stderr ""
+puts stderr ""
+}
+
+
+set MAINPATH  "/mnt/lustre/indy2lfs/sw/boost/1.73.0"
+
+prepend-path PATH              $MAINPATH/bin
+prepend-path LIBRARY_PATH      $MAINPATH/lib
+prepend-path LD_LIBRARY_PATH   $MAINPATH/lib 
+prepend-path CPATH             $MAINPATH/include
+prepend-path CMAKE_PREFIX_PATH $MAINPATH/
+

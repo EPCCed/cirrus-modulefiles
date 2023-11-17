@@ -1,0 +1,31 @@
+#%Module
+#
+ 
+# Clashes
+conflict castep
+
+proc ModulesHelp { } {
+puts stderr "\tCASTEP 19.1.1"
+puts stderr "\t=============\n"
+puts stderr "\tThis module sets up your environment to access CASTEP 19.1.1."
+puts stderr "\tOnce loaded you can access the CASTEP executable using the"
+puts stderr "\tname \'castep.mpi\'.\n"
+puts stderr "\tInstalled by: A. Turner, EPCC"
+puts stderr "\tDate: 13 July 2018\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set CASTEP_CURPATH /mnt/lustre/indy2lfs/sw/castep19/19.1.1-intel19-mpt220
+
+module load mpt
+module load intel-compilers-19
+module load intel-cmkl-19
+
+prepend-path  PATH   $CASTEP_CURPATH
+setenv CASTEP $CASTEP_CURPATH
+setenv CASTEP_EXE $CASTEP_CURPATH/castep.mpi
+setenv CASTEP_MODULE castep/19.1.1-intel19-mpt220
+

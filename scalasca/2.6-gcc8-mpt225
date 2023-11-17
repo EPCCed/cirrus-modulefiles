@@ -1,0 +1,40 @@
+#%Module######################################################################
+##
+##     Scalasca 2.6
+##
+module-whatis "Scalasca 2.6"
+proc ModulesHelp { } {
+  puts stderr "Scalasca 2.6 for GCC 8.2.0 and MPT 2.25"
+  puts stderr "=======================================\n"
+
+  puts stderr "This module adds Scalasca to your environment."
+
+  puts stderr "Installation instructions can be found at:\n"
+
+  puts stderr "\t* http://apps.fz-juelich.de/scalasca/releases/scalasca/2.5/docs/INSTALL.txt\n\n"
+
+  puts stderr "Built with GCC 8.2.0 and MPT 2.25."
+  puts stderr "Please note this installation does NOT support Fortran with MPI."
+
+  puts stderr "\tInstalled: 4 July 2022"
+  puts stderr "\tInstalled by: William Lucas, EPCC"
+}
+
+if ![ is-loaded gcc/8.2.0 ] {
+    module load gcc/8.2.0
+}
+if ![ is-loaded mpt/2.25 ] {
+    module load mpt/2.25
+}
+
+set is_module_rm [module-info mode remove]
+
+set base        /mnt/lustre/indy2lfs/sw/scalasca/2.6-gcc8-mpt225
+set ver         2.6
+set path        $base
+
+prepend-path PATH             $path/bin
+prepend-path PATH             /mnt/lustre/indy2lfs/sw/scalasca/cubegui-4.7/bin
+prepend-path LD_LIBRARY_PATH  $path/lib
+prepend-path CPATH            $path/include
+

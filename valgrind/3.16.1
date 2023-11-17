@@ -1,0 +1,29 @@
+#%Module######################################################################
+##
+##      Valgrind 3.16.1
+##
+module-whatis "valgrind@3.16.1"
+proc ModulesHelp { } {
+  puts stderr "Valgrind 3.16.1"
+  puts stderr "===============\n"
+
+  puts stderr "This module adds Valgrind to your environment."
+
+  puts stderr "Installation instructions can be found at:\n"
+
+  puts stderr "\t* https://www.valgrind.org/docs/manual/manual-core.html#manual-core.install\n"
+
+  puts stderr "\tInstalled: 21 August 2020"
+  puts stderr "\tInstalled by: William Lucas, EPCC"
+}
+
+set base        /mnt/lustre/indy2lfs/sw/valgrind
+set ver         3.16.1
+set path        $base
+
+prepend-path PATH	      $path/bin
+prepend-path LD_LIBRARY_PATH  $path/lib/valgrind
+prepend-path CPATH            $path/include 
+prepend-path VALGRIND_LIB     $path/lib/valgrind
+prepend-path PKG_CONFIG_PATH  $path/lib/pkgconfig
+

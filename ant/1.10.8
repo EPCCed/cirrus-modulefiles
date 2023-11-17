@@ -1,0 +1,31 @@
+#%Module######################################################################
+##
+##      Apache Ant 
+##      Version 1.10.8
+##
+##      Installed by William Lucas, EPCC, 21 August 2020
+##
+##      
+module-whatis "ant@1.10.8"
+proc ModulesHelp { } {
+  puts stderr "Apache Ant 1.10.8"
+  puts stderr "=================\n"
+
+  puts stderr "This module adds Apache Ant to your environment."
+
+  puts stderr "Installation instructions can be found at:\n"
+
+  puts stderr "\t* https://ant.apache.org/manual/index.html\n"
+
+  puts stderr "\tInstalled: 21 August 2020"
+  puts stderr "\tInstalled by: William Lucas, EPCC"
+}
+
+if ![ is-loaded java/jdk-14.0.1 ] {
+    puts stderr "Autoloading Java JDK 14.0.1"
+    module load java/jdk-14.0.1
+}
+
+set base        /mnt/lustre/indy2lfs/sw/ant/apache-ant-1.10.8
+setenv          ANT_HOME    $base
+prepend-path    PATH        $base/bin

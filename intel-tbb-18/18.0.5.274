@@ -1,0 +1,35 @@
+#%Module######################################################################
+##
+##      intel parallel studio modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths for Intel Threading Building Blocks 18.0.5.274"
+}
+
+set sys         [uname sysname]
+set mach        [uname machine]
+set base        /mnt/lustre/indy2lfs/sw/intel
+set ver         compilers_and_libraries_2018.5.274
+set path        $base/$ver/linux/tbb
+
+if { [file exists "/bin/uname"] } {
+   set mach [ exec /bin/uname -m ]
+}
+
+if { $sys == "Linux" } {
+   if { $mach == "x86_64" } {
+      set arch intel64
+   } elseif { $mach == "i686" } {
+      set arch ia32
+   }
+   prepend-path MANPATH 		$base/$ver/linux/man/common
+   prepend-path LIBRARY_PATH		$path/lib/intel64/gcc4.7
+   prepend-path OLDPWD			$base/tbb/bin
+   prepend-path MIC_LD_LIBRARY_PATH	$path/lib/mic
+   prepend-path LD_LIBRARY_PATH		$path/lib/intel64/gcc4.7
+   prepend-path MIC_LIBRARY_PATH	$path/lib/mic
+   prepend-path CPATH			$path/include
+   prepend-path TBBROOT			$path
+   prepend-path OLDPWD			$base/tbb/bin
+}
+

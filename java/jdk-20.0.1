@@ -1,0 +1,29 @@
+#%Module##############################
+#
+#
+
+proc ModulesHelp { } {
+  puts stderr "OpenJDK 20.0.1"
+  puts stderr "===========\n"
+
+  puts stderr "This module adds OpenJDK to your environment."
+
+  puts stderr "\tInstalled: 25 May 2023"
+  puts stderr "\tInstalled by: William Lucas, EPCC"
+
+}
+
+set _module_name [module-info name]
+set is_module_rm [module-info mode remove]
+
+set JAVA_LEVEL jdk-20.0.1
+set JAVA_CURPATH /mnt/lustre/indy2lfs/sw/java/$JAVA_LEVEL
+
+setenv JAVA_HOME                    $JAVA_CURPATH
+prepend-path PATH                   $JAVA_CURPATH/bin
+prepend-path LIBRARY_PATH           $JAVA_CURPATH/lib
+prepend-path LD_LIBRARY_PATH        $JAVA_CURPATH/lib
+prepend-path CPATH                  $JAVA_CURPATH/include
+prepend-path CPLUS_INCLUDE_PATH     $JAVA_CURPATH/include
+prepend-path CMAKE_PREFIX_PATH      $JAVA_CURPATH
+

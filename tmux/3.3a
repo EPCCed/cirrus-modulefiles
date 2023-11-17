@@ -1,0 +1,29 @@
+#%Module##############################
+# Modulefile for GCC
+#
+
+proc ModulesHelp { } {
+  puts stderr "tmux: terminal multiplexer"
+  puts stderr "==========================\n"
+  puts stderr "\tInstalled: 15 September 2022"
+  puts stderr "\tInstalled by: W. Lucas, EPCC"
+
+}
+
+conflict tmux
+
+set is_module_rm [module-info mode remove]
+
+set TMUX_CURPATH /mnt/lustre/indy2lfs/sw/tmux/3.3a
+prepend-path PATH $TMUX_CURPATH/bin
+append-path MANPATH $TMUX_CURPATH/share/man
+prepend-path LD_LIBRARY_PATH $TMUX_CURPATH/lib
+
+# This hack is needed to preserve the colon at the start of MANPATH
+if { [ module-info mode remove ] } {
+   set localman ":"
+   append localman $::env(MANPATH)
+   set ::env(MANPATH) $localman
+}
+
+

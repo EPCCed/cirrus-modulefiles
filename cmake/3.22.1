@@ -1,0 +1,16 @@
+#%Module1.0
+
+
+module-whatis "A cross-platform, open-source build system."
+
+proc ModulesHelp { } {
+  puts stderr "A cross-platform, open-source build system."
+  puts stderr "Installed 9th December 201 kevin@epcc.ed.ac.uk"
+}
+
+
+prepend-path PATH "/mnt/lustre/indy2lfs/sw/cmake/3.22.1/bin"
+prepend-path ACLOCAL_PATH "/mnt/lustre/indy2lfs/sw/cmake/3.22.1/share/aclocal"
+prepend-path CMAKE_PREFIX_PATH "/mnt/lustre/indy2lfs/sw/cmake/3.22.1"
+prepend-path MANPATH "/mnt/lustre/indy2lfs/sw/cmake/3.22.1/man/man1"
+

@@ -1,0 +1,39 @@
+#%Module1.0
+## Module file created by Iakovos Panourgias, EPCC
+## Date: 24 Jun 2020
+##
+
+module-whatis "PETSc is a suite of data structures and routines for the scalable (parallel) solution of scientific applications modeled by partial differential equations. "
+
+proc ModulesHelp { } {
+puts stderr "PETSc is a suite of data structures and routines for the scalable"
+puts stderr "(parallel) solution of scientific applications modeled by partial"
+puts stderr "differential equations."
+}
+
+conflict intel-compilers-19
+conflict intel-compilers-18
+conflict intel-license
+conflict intel
+
+if ![ is-loaded gcc/8.2.0 ] {
+    module load gcc/8.2.0
+}
+
+if ![ is-loaded mpt/2.25 ] {
+    module load mpt/2.25
+}
+
+# Set the path to this installation
+set PETSC_CURPATH /work/y07/shared/petsc/mpt-2.25/test_install_gcc820_mpt
+
+prepend-path PATH               $PETSC_CURPATH/bin/
+prepend-path LIBRARY_PATH       $PETSC_CURPATH/lib/
+prepend-path LD_LIBRARY_PATH    $PETSC_CURPATH/lib/
+prepend-path CPATH              $PETSC_CURPATH/include/
+prepend-path PKG_CONFIG_PATH    $PETSC_CURPATH/lib/pkgconfig/
+prepend-path CMAKE_PREFIX_PATH  $PETSC_CURPATH/
+prepend-path CPLUS_INCLUDE_PATH $PETSC_CURPATH//include/
+setenv PETSC_DIR $PETSC_CURPATH/
+unsetenv PETSC_ARCH
+

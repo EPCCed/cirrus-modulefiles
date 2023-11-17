@@ -1,0 +1,30 @@
+#%Module
+#
+
+# Clashes
+conflict libsndfile
+
+proc ModulesHelp { } {
+puts stderr "libsndfile 1.0.28"
+puts stderr "================="
+puts stderr "Libsndfile is a C library for reading and writing files containing sampled sound (such as MS Windows WAV and the Apple/SGI AIFF format)"
+puts stderr "through one standard library interface. See http://www.mega-nerd.com/libsndfile/ .\n"
+puts stderr "The libsndfile binaries and libraries were built using GCC 8.2.0.\n"
+puts stderr "\tInstalled by: M. Bareford, EPCC"
+puts stderr "\tModified date: 29 June 2023\n"
+}
+
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+
+set LIBSNDFILE_ROOT /mnt/lustre/indy2lfs/sw/libsndfile/1.0.28
+
+prepend-path PATH               $LIBSNDFILE_ROOT/bin
+prepend-path CPATH              $LIBSNDFILE_ROOT/include
+prepend-path MANPATH            $LIBSNDFILE_ROOT/share/man
+prepend-path LIBRARY_PATH       $LIBSNDFILE_ROOT/lib
+prepend-path LD_LIBRARY_PATH    $LIBSNDFILE_ROOT/lib
+prepend-path PKG_CONFIG_PATH    $LIBSNDFILE_ROOT/lib/pkgconfig

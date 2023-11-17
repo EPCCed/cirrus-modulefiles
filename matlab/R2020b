@@ -1,0 +1,84 @@
+#%Module
+#
+# Module matlab
+#
+
+# You need to set the version in two places in this file.
+
+set version R2020b
+
+# MLM_LICENSE_FILE doesn't need to be set just for this default
+# licence file, but eventually we will add a licence manager on the
+# login node to provide 32 MDCS licences for Cirrus alone, avoiding
+# using the the University server, which provides 32 licences for the
+# whole University.
+setenv MLM_LICENSE_FILE /mnt/lustre/indy2lfs/sw/cse-matlab/MATLAB/$version/licenses/vm.lic
+prepend-path PATH /mnt/lustre/indy2lfs/sw/cse-matlab/bin:/mnt/lustre/indy2lfs/sw/cse-matlab/MATLAB/$version/bin
+
+if {[module-info mode load]} {
+    puts stderr {
+This installation of MATLAB on Cirrus is covered by an Academic
+License - for use in teaching, academic research, and meeting course
+requirements at degree granting institutions only.  Not for
+government, commercial, or other organizational use.
+
+If your use of MATLAB is not covered by this license then please do
+not use this installation.  Please contact the Cirrus helpdesk
+support@cirrus.ac.uk to arrange use of your own MATLAB license on
+Cirrus.
+    }
+}
+
+# the prereqs and conflicts are tested before environment is changed,
+# so they can be safely placed anywhere in a modulefile
+
+conflict matlab
+
+proc ModulesHelp { } {
+
+    set version R2020b
+
+    puts stderr {MATLAB}
+    puts stderr {======
+
+MATLAB combines a desktop environment tuned for iterative analysis and
+design processes with a programming language that expresses matrix and
+array mathematics directly.
+
+The website is https://uk.mathworks.com
+}
+    puts stderr "This is MATLAB $version."
+    puts stderr {
+This installation of MATLAB on Cirrus is covered by an Academic
+License - for use in teaching, academic research, and meeting course
+requirements at degree granting institutions only.  Not for
+government, commercial, or other organizational use.
+
+If your use of MATLAB is not covered by this license then please do
+not use this installation.  Please contact the Cirrus helpdesk
+support@cirrus.ac.uk to arrange use of your own MATLAB license on
+Cirrus.
+
+MATLAB is intended to be used on the compute nodes within PBS job
+scripts.  Use on the login nodes should be restricted to setting
+preferences, accessing help, and launching Parallel Server jobs.  It is
+recommended that MATLAB is used without a GUI on the compute nodes, as
+the interactive response is slow.
+
+The license for this installation of MATLAB provides an unlimited number of
+workers via MATLAB Parallel Server.
+
+MATLAB will normally use up to the total number of cores on a node for
+multi-threaded operations (e.g. matrix inversions) and for parallel
+computations.  It also makes no restriction on its memory use.  These
+features are incompatible with the shared use of nodes on Cirrus.
+
+More information on using the local cluster, MATLAB Parallel Server, and GPUs
+is available in the Cirrus documentation
+https://cirrus.readthedocs.io/en/master/software-packages/MATLAB.html
+
+Maintained by: Adrian Jackson, EPCC
+}
+}
+
+module-whatis "MATLAB"

@@ -1,0 +1,48 @@
+#%Module
+# 
+
+# Clashes
+conflict openmpi
+
+proc ModulesHelp { } {
+puts stderr "\tOpenMPI 4.1.4 CUDA 11.8"
+puts stderr "\t=======================\n"
+puts stderr "\tCompiled with gcc 8.2.0 and linked with"
+puts stderr "\tPMI2, UCX 1.9.0, libevent 2.1.12"
+puts stderr "\tIntended for use with nvidia/nvhpc-nompi/22.11"
+puts stderr "\tDate: Jan 2023 (kevin@epcc.ed.ac.uk)\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+if ![ is-loaded gcc ] {
+    module load gcc/8.2.0
+}
+
+set ROOT /mnt/lustre/indy2lfs/sw
+set OPENMPI_ROOT $ROOT/openmpi/4.1.4-cuda-11.8
+set UCX_ROOT $ROOT/ucx/1.9.0-cuda-11.8
+set PMI_ROOT $ROOT/pmi2
+set LIBEVENT_ROOT $ROOT/libevent/2.1.12
+
+setenv MPI_HOME $OPENMPI_ROOT
+
+prepend-path PATH $OPENMPI_ROOT/bin
+prepend-path CPATH $OPENMPI_ROOT/include
+prepend-path MANPATH $OPENMPI_ROOT/share/man
+
+prepend-path LIBRARY_PATH $OPENMPI_ROOT/lib:$UCX_ROOT/lib:$PMI_ROOT/lib:$LIBEVENT_ROOT/lib
+prepend-path LD_LIBRARY_PATH $OPENMPI_ROOT/lib:$UCX_ROOT/lib:$PMI_ROOT/lib:$LIBEVENT_ROOT/lib
+prepend-path LD_RUN_PATH $OPENMPI_ROOT/lib:$UCX_ROOT/lib:$PMI_ROOT/lib:$LIBEVENT_ROOT/lib
+
+prepend-path PKG_CONFIG_PATH $OPENMPI_ROOT/lib/pkgconfig
+
+setenv OMPI_MCA_opal_common_ucx_opal_mem_hooks 1
+setenv OMPI_MCA_UCX_MEM_MMAP_HOOK_MODE none
+setenv OMPI_MCA_btl_openib_allow_ib 1
+setenv OMPI_MCA_btl_openib_if_include mlx5_0:1,mlx5_1:1,mlx5_2:1,mlx5_3:1
+setenv OMPI_MCA_pml ucx
+setenv OMPI_MCA_btl_openib_warn_default_gid_prefix 0
+

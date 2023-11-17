@@ -1,0 +1,11 @@
+#%Module######################################################################
+##
+##      intel compiler modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use Intel 19.0.0.117 C and Fortran compilers."
+}
+
+module load intel-cc-19/19.0.0.117
+module load intel-fc-19/19.0.0.117
+

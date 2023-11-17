@@ -1,0 +1,26 @@
+#%Module######################################################################
+##
+##      Intel analyzer modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Set paths to run Intel analyzer 2020"
+}
+
+set sys        [uname sysname]
+set base       /mnt/lustre/indy2lfs/sw/intel/itac/2020.3.036
+
+if { [file exists "/bin/uname"] } {
+   set arch [ exec /bin/uname -m ]
+}
+
+if { $sys == "Linux" } {
+   if { $arch == "x86_64" } {
+      module load intel-license
+      prepend-path PATH $base/intel64/bin
+      prepend-path MANPATH $base/man
+      prepend-path LD_LIBRARY_PATH $base/intel64/lib
+      prepend-path LD_LIBRARY_PATH $base/intel64/slib
+   }
+}
+

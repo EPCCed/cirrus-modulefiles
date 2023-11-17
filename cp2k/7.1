@@ -1,0 +1,76 @@
+#%Module
+#
+# Module definition for CP2K 7.1
+#
+# H. Judge , EPCC, 25 June 2020
+
+# Clashes
+#
+module unload mpt
+module unload intel-compilers-19
+module unload intel-mpi-19
+module unload intel-cmkl-19
+conflict cp2k-mpt
+conflict intel-mpi-19
+conflict intel-compilers-19
+conflict intel-cmkl-19
+module load intel-mpi-18
+module load intel-compilers-18
+module load intel-cmkl-18
+module load fftw/3.3.8-intel18
+
+# The text to print if someone types "module help castep/6.1.1"
+proc ModulesHelp { } {
+puts stderr "\tCP2K 7.1"
+puts stderr "\t==============\n"
+puts stderr "\tThis module sets up your environment to access CP2K 7.1"
+puts stderr "\tOnce loaded you can access the CP2K executable using "
+puts stderr "\t\'cp2k.popt\' (MPI only) or \'cp2k.psmp\' (MPI+OpenMP).\n"
+#puts stderr "\tYou can find example job submission scripts, compilation"
+#puts stderr "\tinstructions and more details on the Cirrus Website:\n"
+#puts stderr "\t\thttps://cirrus.readthedocs.io/en/latest/\n"
+puts stderr "\tInstalled by: H. Judge, EPCC"
+puts stderr "\tDate: 25 June 2020\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+# Set the path to this installation
+#setenv CP2K_CURPATH /mnt/lustre/indy2lfs/sw/cp2k
+
+set CP2K_CURPATH /mnt/lustre/indy2lfs/sw/cp2k
+
+# Make sure the binaries are added to PATH
+prepend-path  PATH              $CP2K_CURPATH/7.1/cp2k/cp2k/exe/Cirrus-intel
+
+
+# Setup any further environment variables
+
+setenv CP2K $CP2K_CURPATH
+setenv CP2K_DATA_DIR $CP2K_CURPATH/7.1/cp2k/cp2k/data
+setenv CP2K_EXE $CP2K_CURPATH/7.1/cp2k/cp2k/exe/Cirrus-intel/cp2k.psmp
+setenv CP2K_MODULE CP2K/7.1
+
+
+puts stderr  "*********************************** CP2K 7.1 ***********************************"
+puts stderr "* Please note:                                                                 *"
+puts stderr  "*     - CP2K is compiled with the Intel-18 compiler                            *"
+puts stderr  "*     - CP2K must be used with Intel-mpi and Intel MKL 18 (autoloaded)         *"
+#puts stderr  "*     - Only the MPI/OpenMP hybrid version of cp2k, 'cp2k.psmp' is available.  *"
+#puts stderr  "*       Unless you wish to use threads, remember to set OMP_NUM_THREADS to 1   *"
+puts stderr  "*                                                                              *"
+puts stderr  "*      The appropriate pre/anti-requisite modules have been loaded/unloaded    *"
+puts stderr  "*                                                                              *"
+puts stderr  "* ################################## IMPORTANT ############################### *"
+puts stderr  "* #                                                                          # *"
+puts stderr  "* #   USAGE:                                                                 # *"
+puts stderr  "* #                                                                          # *"
+puts stderr  "* #   export OMP_NUM_THREADS=\[nthreads\]                                      # *"
+puts stderr  "* #   srun cp2k.psmp                                                         # *"
+puts stderr  "* #                                                                          # *"
+puts stderr  "* ############################################################################ *"
+puts stderr  "********************************************************************************"
+
+

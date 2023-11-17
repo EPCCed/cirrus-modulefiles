@@ -1,0 +1,22 @@
+#%Module
+# 
+
+# Clashes
+conflict autotools
+
+# Load
+module load autoconf
+module load automake
+module load libtool
+
+# The text to print if someone types "module help libtool/2.4.6"
+proc ModulesHelp { } {
+   puts stderr "This module loads autoconf, automake, and libtool."
+}
+ 
+module-whatis "This module loads autoconf, automake, and libtool.\n"
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+

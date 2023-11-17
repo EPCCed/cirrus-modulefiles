@@ -1,0 +1,51 @@
+#%Module
+#
+# Module definition for Star CCM+ 14.04.013-R8
+#
+# Iakovos Panourgias, EPCC, 20th October 2020
+
+# Clashes
+conflict starccm+
+
+# The text to print if someone types "module help starccm+/14.04.013-R8"
+proc ModulesHelp { } {
+puts stderr "\tStar CCM+ 14.04.013-R8 R8"
+puts stderr "\t==============\n"
+puts stderr "\tThis module sets up your environment to access Star-CCM+ 14.04.013-R8."
+puts stderr "\tFor access to STARCMM+ please contact the Cirrus  helpdesk"
+puts stderr "\tat support@cirrus.ac.uk\n"
+puts stderr "\tInstalled by: Iakovos Panourgias, EPCC"
+puts stderr "\tDate: 20th October 2020\n"
+}
+
+if { [ module-info mode load ] } {
+    puts stderr "\nWarning!"
+    puts stderr "STAR-CCM+ should only be used by users who have a valid STAR-CCM+ license."
+    puts stderr "If you do not have a valid STAR-CMM+ license please unload this module"
+    puts stderr "and do not use the STAR-CMM+ software.\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+conflict starccm+
+
+# Set the path to this installation
+set STARCCM_CURPATH /mnt/lustre/indy2lfs/sw/STARCCM+/14.04.013-R8/STAR-CCM+14.04.013-R8/
+module load mpt/2.25
+setenv SGI_MPI_HOME /opt/hpe/hpc/mpt/mpt-2.25/
+
+module load libtirpc/1.2.6
+module load libnsl/1.3.0
+
+# Make sure the binaries are added to PATH
+prepend-path  PATH              $STARCCM_CURPATH/star/bin
+prepend-path  LD_LIBRARY_PATH   $STARCCM_CURPATH/star/lib/linux-x86_64-2.12/gnu7.1-r8/lib/
+prepend-path  LD_LIBRARY_PATH   $STARCCM_CURPATH/mkl/2017.2/linux/lib/intel64/
+prepend-path  LD_LIBRARY_PATH   $STARCCM_CURPATH/heeds/2019.1.0.8677/linux-x86_64/LX64/
+prepend-path  LD_LIBRARY_PATH   $STARCCM_CURPATH/boost/1_68_0/linux-x86_64/gnu7.1/
+prepend-path  LD_LIBRARY_PATH   $STARCCM_CURPATH/tbb/2017_U6b/linux-x86_64-2.12/gnu7.1/
+
+# Setup any further environment variables
+

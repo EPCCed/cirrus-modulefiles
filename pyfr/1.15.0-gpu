@@ -1,0 +1,36 @@
+#%Module
+#
+
+# Clashes
+conflict pyfr
+
+proc ModulesHelp { } {
+  puts stderr "PyFR 1.15.0-gpu"
+  puts stderr "===============\n"
+  puts stderr "A Python virtual environment (venv) that provides PyFR 1.15.0,"
+  puts stderr "see http://www.pyfr.org/index.php for further details.\n"
+  puts stderr "This venv is an extension of the Miniconda3 (Python 3.9.13) environment provided by the \"python/3.9.13-gpu\" module."
+  puts stderr "After you have loaded this module, simply run \"pip list\" to see the full package list.\n"
+  puts stderr "Please note, parallel execution must be done on the Cirrus GPU nodes only."
+  puts stderr "Serial execution such as partitioning can be done on the login nodes however."
+  puts stderr "(The PyFR module includes the METIS partitioner v5.1.0.)\n"
+  puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/pyenvs/pyfr/build_pyfr_1.14.0_cirrus_gpu.md \n"
+  puts stderr "Installed by: M. Bareford, EPCC"
+  puts stderr "Date: 5 October 2022\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set MINICONDA3_PYTHON_VERSION 3.9.13
+set MINICONDA3_PYTHON_LABEL python3.9
+set PYFR_ENV_ROOT /mnt/lustre/indy2lfs/sw/pyfr/1.15.0-gpu/python/$MINICONDA3_PYTHON_VERSION
+
+module load metis/5.1.0
+module load python/$MINICONDA3_PYTHON_VERSION-gpu
+
+prepend-path PATH $PYFR_ENV_ROOT/bin
+prepend-path LIBRARY_PATH $PYFR_ENV_ROOT/lib
+prepend-path LD_LIBRARY_PATH $PYFR_ENV_ROOT/lib
+prepend-path PYTHONPATH $PYFR_ENV_ROOT/lib/$MINICONDA3_PYTHON_LABEL/site-packages

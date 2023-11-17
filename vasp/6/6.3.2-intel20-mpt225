@@ -1,0 +1,40 @@
+#%Module
+#
+ 
+# Clashes
+conflict vasp
+
+proc ModulesHelp { } {
+puts stderr "VASP 6.3.2"
+puts stderr "==========\n"
+puts stderr "This module sets up your environment to access VASP 6.3.2."
+puts stderr "Once this module has been loaded you can"
+puts stderr "access the VASP 6.3.2 executables as:\n"
+puts stderr "\t *'vasp_std'       - Multiple k-point (complex) version"
+puts stderr "\t *'vasp_gam'       - Gamma-point only version"
+puts stderr "\t *'vasp_ncl'       - Multiple k-point, noncollinear version"
+puts stderr "\nIf you are only interested in the gamma-point, the"
+puts stderr "gamma-point version of the code runs about 30-50%"
+puts stderr "faster than the complex code.\n"
+puts stderr "\tInstalled by: A. Turner, EPCC"
+puts stderr "\tDate: 13 Mar 2023\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+module load intel-20.4/compilers
+module load intel-20.4/cmkl
+module load mpt
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set VASP6_LEVEL 6.3.2-intel20-mpt225
+set VASP6_CURPATH /mnt/lustre/indy2lfs/sw/vasp6/$VASP6_LEVEL
+
+prepend-path  PATH              $VASP6_CURPATH/bin
+setenv VASP6 $VASP6_CURPATH
+

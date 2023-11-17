@@ -1,0 +1,12 @@
+#%Module######################################################################
+##
+##      intel compiler modulefile
+##
+
+proc ModulesHelp { } {
+   puts stderr "Set paths for Intel 2019 Update 5 C and Fortran compilers."
+}
+
+module load intel-19.5/cc
+module load intel-19.5/fc
+

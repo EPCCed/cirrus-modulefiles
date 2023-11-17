@@ -1,0 +1,35 @@
+#%Module1.0
+## Module file created by Iakovos Panourgias, EPCC
+## 13 Nov 2020
+##
+
+module-whatis "CRYSTAL17"
+
+proc ModulesHelp { } {
+puts stderr "CRYSTAL17"
+}
+
+conflict mpt
+conflict openmpi
+conflict CRYSTAL17
+conflict intel-mpi-19
+conflict intel-compilers-19
+conflict intel-cmkl-19
+
+if ![ is-loaded intel-compilers-18/18.05.274 ] {
+    module load intel-compilers-18/18.05.274
+}
+
+if ![ is-loaded intel-mpi-18/18.0.5.274 ] {
+    module load intel-mpi-18/18.0.5.274
+}
+
+if ![ is-loaded intel-cmkl-18/18.0.5.274 ] {
+    module load intel-cmkl-18/18.0.5.274
+}
+
+# Set the path to this installation
+set CRYSTAL17_CURPATH   /mnt/lustre/indy2lfs/sw/CRYSTAL17/1.0.2_intel18/
+
+prepend-path PATH               $CRYSTAL17_CURPATH/bin
+

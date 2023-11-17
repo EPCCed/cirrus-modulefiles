@@ -1,0 +1,13 @@
+#%Module1.0
+## Module created by Adrian Jackson, EPCC
+##
+module-whatis "perf@1.0.0"
+
+proc ModulesHelp { } {
+puts stderr ""
+
+}
+
+set PERF_PATH /mnt/lustre/indy2lfs/sw/perf
+
+prepend-path PATH               $PERF_PATH/bin

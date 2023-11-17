@@ -1,0 +1,48 @@
+#%Module
+#
+
+# Clashes
+conflict gdal
+
+proc ModulesHelp { } {
+puts stderr "GDAL 3.6.2-gcc"
+puts stderr "=============="
+puts stderr "GDAL is a translator library for raster and vector geospatial data formats."
+puts stderr "It presents a single raster abstract data model and vector abstract data model"
+puts stderr "to the calling application for all supported formats. GDAL also comes with a "
+puts stderr "variety of useful command line utilities for data translation and processing."
+puts stderr "See https://gdal.org/index.html .\n"
+puts stderr "The GDAL binaries and libraries were built using GCC 8.2.0 and PROJ 9.1.1.\n"
+puts stderr "\tInstalled by: M. Bareford, EPCC"
+puts stderr "\tModified date: 25 Jan 2023\n"
+}
+
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+
+if ![ is-loaded gcc/8.2.0 ] {
+    module load gcc/8.2.0
+}
+
+module use /mnt/lustre/indy2lfs/sw/modulefiles-development
+module load proj/9.1.1
+
+set GDAL_ROOT /mnt/lustre/indy2lfs/sw/gdal/3.6.2-gcc
+
+setenv GDAL_CONFIG      $GDAL_ROOT/bin/gdal-config
+setenv GDAL_VERSION     3.6.2
+setenv GDAL_DATA        $GDAL_ROOT/share/gdal
+
+prepend-path PATH               $GDAL_ROOT/bin
+prepend-path CPATH              $GDAL_ROOT/include
+
+prepend-path PYTHONPATH         $GDAL_ROOT/bin
+prepend-path PYTHONPATH         $GDAL_ROOT/lib/python3.9/site-packages
+
+prepend-path LIBRARY_PATH       $GDAL_ROOT/lib64
+prepend-path LD_LIBRARY_PATH    $GDAL_ROOT/lib64
+prepend-path PKG_CONFIG_PATH    $GDAL_ROOT/lib64/pkgconfig
+prepend-path CMAKE_PREFIX_PATH  $GDAL_ROOT

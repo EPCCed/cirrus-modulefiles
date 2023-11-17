@@ -1,0 +1,12 @@
+#%Module######################################################################
+##
+##      intel compiler modulefile
+##
+
+proc ModulesHelp { } {
+   puts stderr "Set paths for Intel 2020 C and Fortran compilers."
+}
+
+module load intel-20.4/cc
+module load intel-20.4/fc
+

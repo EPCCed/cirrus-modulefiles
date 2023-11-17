@@ -1,0 +1,32 @@
+#%Module
+# 
+# Module definition for TensorRT 7.2.3.4 (CUDA 11.2)
+#
+# M. Bareford 5 October 2022
+
+# Clashes
+conflict nvidia/tensorrt
+
+# The text to print if someone types "module help nvidia/tensorrt/7.2.3.4"
+proc ModulesHelp { } {
+puts stderr "\tTensorRT 7.2.3.4 (CUDA 11.2)"
+puts stderr "\t============================\n"
+puts stderr "\tNVIDIA TensorRT is a platform for high performance deep learning inference,"
+puts stderr "\tsee https://developer.nvidia.com/tensorrt .\n"
+puts stderr "\tInstalled by M. Bareford, EPCC"
+puts stderr "\tDate: October 2022\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set ROOT /mnt/lustre/indy2lfs/sw/nvidia/tensorrt/7.2.3.4
+
+setenv TENSORRT_ROOT $ROOT
+
+prepend-path CPATH $ROOT/include
+
+prepend-path LIBRARY_PATH $ROOT/lib
+prepend-path LD_LIBRARY_PATH $ROOT/lib
+prepend-path LD_RUN_PATH $ROOT/lib

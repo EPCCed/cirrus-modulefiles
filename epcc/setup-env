@@ -1,0 +1,35 @@
+#%Module1.0
+#
+# Module to set default environment for users
+
+module-whatis "Cirrus environment setup"
+
+proc ModulesHelp { } {
+puts stderr "EPCC Cirrus Environment"
+puts stderr "=======================\n"
+
+puts stderr "Environment setup for Cirrus. At the moment this:\n"
+puts stderr "\t* Adds to the the default MODULEPATH to make software modules available"
+puts stderr "\t* Sets SBATCH_EXPORT=none to avoid login shell modules being exported to batch jobs\n"
+
+puts stderr "\tInstalled: 19 June 2020"
+puts stderr "\tInstalled by: Andy Turner, EPCC"
+
+}
+
+#module use /usr/share/Modules/modulefiles
+module use /mnt/lustre/indy2lfs/sw/modulefiles
+
+module load epcc/utils
+
+setenv SBATCH_EXPORT none
+setenv SLURM_EXPORT_ENV all
+
+if { [module-info mode remove] } {
+    puts stderr "\nWarning: Unloading the epcc/setup-env module will stop many"
+    puts stderr "modules being available on the system. If you do this by" 
+    puts stderr "accident, you can recover the situation with the commands:\n"
+    puts stderr "\tmodule use /mnt/lustre/indy2lfs/sw/modulefiles"
+    puts stderr "\tmodule load epcc/setup-env"
+}
+

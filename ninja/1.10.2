@@ -1,0 +1,14 @@
+#%Module1.0
+module-whatis "ninja is a build system"
+
+proc ModulesHelp { } {
+puts stderr "ninja 1.10.2"
+puts stderr "==========\n"
+
+puts stderr "Ninja is a build system"
+
+}
+
+conflict ninja
+
+prepend-path PATH "/mnt/lustre/indy2lfs/sw/ninja/1.10.2/bin"

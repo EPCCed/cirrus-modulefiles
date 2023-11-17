@@ -1,0 +1,31 @@
+#%Module
+#
+ 
+# Clashes
+conflict namd
+
+proc ModulesHelp { } {
+puts stderr "NAMD 3.0a13-gpu"
+puts stderr "==============="
+puts stderr "NAMD is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems,"
+puts stderr "see https://www.ks.uiuc.edu/Research/namd/ .\n"
+puts stderr "This NAMD 3.0 alpha 13 release is intended for use on the Cirrus GPU Nodes (NVIDIA Tesla V100)."
+puts stderr "It is binary install that uses CUDA 11.6.\n"
+puts stderr "See https://www.ks.uiuc.edu/Research/namd/alpha/3.0alpha/#downloads ."
+puts stderr "\tInstalled by: M. Bareford, EPCC"
+puts stderr "\tModified date: 19 Jan 2023\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set NAMD_ROOT /mnt/lustre/indy2lfs/sw/namd
+set NAMD_PATH $NAMD_ROOT/3.0a13-gpu
+
+module load nvidia/nvhpc-nompi/22.2
+module load intel-mpi-19/19.0.0.117
+module load fftw/3.3.9-impi19-gcc8
+
+prepend-path LD_LIBRARY_PATH $NAMD_PATH/lib
+prepend-path PATH $NAMD_PATH

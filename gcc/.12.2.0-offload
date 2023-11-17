@@ -1,0 +1,33 @@
+#%Module##############################
+# Modulefile for GCC
+#
+
+proc ModulesHelp { } {
+  puts stderr "GCC 12.2.0"
+  puts stderr "=========\n"
+
+  puts stderr "This module adds the GCC 12.2.0 compilers and libraries to the"
+  puts stderr "path. The Fortran, C, and C++ compilers are available.\n"
+  puts stderr "This compiler has been build to compile for the GPU nodes and to enable OpenMP offload to the GPU hardware.\n"
+
+}
+
+
+set is_module_rm [module-info mode remove]
+
+
+module load mpfr
+module load gmp
+module load mpc
+module load nvidia/nvhpc
+
+set GCC_LEVEL 12.2.0
+set GCC_CURPATH /mnt/lustre/indy2lfs/sw/gcc/12.2.0
+set GCC_MODULEPATH $GCC_CURPATH/modules
+prepend-path PATH $GCC_CURPATH/bin
+append-path MANPATH $GCC_CURPATH/share/man
+prepend-path CPATH $GCC_CURPATH/include
+prepend-path LIBRARY_PATH $GCC_CURPATH/lib
+prepend-path LIBRARY_PATH $GCC_CURPATH/lib64
+prepend-path LD_LIBRARY_PATH $GCC_CURPATH/lib
+prepend-path LD_LIBRARY_PATH $GCC_CURPATH/lib64

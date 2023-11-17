@@ -1,0 +1,38 @@
+#%Module1.0
+## Module file created by Iakovos Panourgias, EPCC
+## Date: 24 Jun 2020
+##
+
+
+module-whatis "GMP is a free library for arbitrary precision arithmetic, operating on signed integers, rational numbers, and floating-point numbers. There is no practical limit to the precision except the ones implied by the available memory in the machine GMP runs on. GMP has a rich set of functions, and the functions have a regular interface."
+
+proc ModulesHelp { } {
+puts stderr "GMP is a free library for arbitrary precision arithmetic, operating on signed integers,"
+puts stderr "rational numbers, and floating-point numbers. There is no practical limit to the "
+puts stderr "precision except the ones implied by the available memory in the machine GMP runs on."
+puts stderr "GMP has a rich set of functions, and the functions have a regular interface."
+}
+
+conflict intel-license
+conflict intel
+
+#if ![ is-loaded gcc/8.2.0 ] {
+#    module load gcc/8.2.0
+#}
+
+if ![ is-loaded mpt/2.25 ] {
+    module load mpt/2.25
+}
+
+# Set the path to this installation
+set GMP_CURPATH   /mnt/lustre/indy2lfs/sw/gmp/6.2.1-mpt/
+
+prepend-path PATH               $GMP_CURPATH/bin
+prepend-path MANPATH            $GMP_CURPATH/share/man
+prepend-path LIBRARY_PATH       $GMP_CURPATH/lib
+prepend-path LD_LIBRARY_PATH    $GMP_CURPATH/lib
+prepend-path CPATH              $GMP_CURPATH/include
+prepend-path CPLUS_INCLUDE_PATH $GMP_CURPATH/include
+prepend-path PKG_CONFIG_PATH    $GMP_CURPATH/lib/pkgconfig
+prepend-path CMAKE_PREFIX_PATH  $GMP_CURPATH
+

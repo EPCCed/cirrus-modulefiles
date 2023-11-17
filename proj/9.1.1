@@ -1,0 +1,38 @@
+#%Module
+#
+
+# Clashes
+conflict proj
+
+proc ModulesHelp { } {
+puts stderr "PROJ 9.1.1"
+puts stderr "=========="
+puts stderr "PROJ is a generic coordinate transformation software that transforms geospatial coordinates"
+puts stderr "from one coordinate reference system to another. This includes cartographic projections"
+puts stderr "as well as geodetic transformations. See https://proj.org/index.html .\n"
+puts stderr "The PROJ binaries and libraries were built using GCC 8.2.0 and SQLite 3.40.1.\n"
+puts stderr "\tInstalled by: M. Bareford, EPCC"
+puts stderr "\tModified date: 25 Jan 2023\n"
+}
+
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+
+module use /mnt/lustre/indy2lfs/sw/modulefiles-development
+module load sqlite/3.40.1
+
+
+set PROJ_ROOT /mnt/lustre/indy2lfs/sw/proj/9.1.1
+
+setenv PROJ_DATA       $PROJ_ROOT/share/proj
+
+prepend-path PATH               $PROJ_ROOT/bin
+prepend-path CPATH              $PROJ_ROOT/include
+prepend-path MANPATH            $PROJ_ROOT/share/man
+prepend-path LIBRARY_PATH       $PROJ_ROOT/lib64
+prepend-path LD_LIBRARY_PATH    $PROJ_ROOT/lib64
+prepend-path PKG_CONFIG_PATH    $PROJ_ROOT/lib64/pkgconfig
+prepend-path CMAKE_PREFIX_PATH  $PROJ_ROOT

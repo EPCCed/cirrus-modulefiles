@@ -1,0 +1,21 @@
+#%Module1.0
+module-whatis "ucx @1.9.0"
+
+proc ModulesHelp { } {
+puts stderr "Unified Communication X (UCX) provides an optimized communication layer for"
+puts stderr "Message Passing (MPI), PGAS/OpenSHMEM libraries and RPC/data-centric applications."
+puts stderr "UCX utilizes high-speed networks for inter-node communication, and shared memory "
+puts stderr "mechanisms for efficient intra-node communication."
+}
+
+conflict ucx
+
+# Set the path to this installation
+set ROOT /mnt/lustre/indy2lfs/sw/ucx/1.9.0
+
+prepend-path PATH               $ROOT/bin
+prepend-path CMAKE_PREFIX_PATH  $ROOT/
+prepend-path LIBRARY_PATH       $ROOT/lib
+prepend-path LD_LIBRARY_PATH    $ROOT/lib
+prepend-path PKG_CONFIG_PATH    $ROOT/lib/pkgconfig
+prepend-path CPATH              $ROOT/include

@@ -1,0 +1,26 @@
+#%Module######################################################################
+##
+##      intel parallel studio modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Sets up the paths for Intel Vtune Amplifier 2020"
+}
+
+set sys         [uname sysname]
+set mach        [uname machine]
+set swbase      /mnt/lustre/indy2lfs/sw/intel
+set ver         vtune_profiler_2020.3.0.612611
+set path        $swbase/$ver
+
+if { [file exists "/bin/uname"] } {
+   set mach [ exec /bin/uname -m ]
+}
+
+if { $sys == "Linux" } {
+
+   module load intel-license
+   prepend-path PATH $path/bin64
+   prepend-path VTUNE_AMPLIFIER_2019_DIR $path
+}
+

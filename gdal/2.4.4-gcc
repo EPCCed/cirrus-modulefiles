@@ -1,0 +1,39 @@
+#%Module1.0
+module-whatis "gdal @2.4.4"
+
+proc ModulesHelp { } {
+puts stderr "GDAL is a translator library for raster and vector geospatial data"
+puts stderr "formats that is released under an X/MIT style Open Source license by the"
+puts stderr "Open Source Geospatial Foundation. As a library, it presents a single"
+puts stderr "raster abstract data model and vector abstract data model to the calling"
+puts stderr "application for all supported formats. It also comes with a variety of"
+puts stderr "useful command line utilities for data translation and processing."
+}
+
+conflict intel-license
+conflict intel
+conflict gdal
+conflict anaconda/python2
+
+if ![ is-loaded gcc/8.2.0 ] {
+    module load gcc/8.2.0
+}
+
+if ![ is-loaded mpt/2.25 ] {
+    module load mpt/2.25
+}
+
+if ![ is-loaded anaconda/python3 ] {
+    module load anaconda/python3
+}
+
+# Set the path to this installation
+set GDAL_CURPATH /mnt/lustre/indy2lfs/sw/gdal/2.4.4/gcc_820/
+
+prepend-path PATH               $GDAL_CURPATH/bin
+prepend-path CMAKE_PREFIX_PATH  $GDAL_CURPATH/
+prepend-path LIBRARY_PATH       $GDAL_CURPATH/lib
+prepend-path LD_LIBRARY_PATH    $GDAL_CURPATH/lib
+prepend-path PKG_CONFIG_PATH    $GDAL_CURPATH/lib/pkgconfig
+prepend-path CPATH              $GDAL_CURPATH/include
+##########setenv MKLROOT "/lustre/sw/spack/opt/spack/linux-centos7-x86_64/gcc-6.2.0/intel-mkl-system-da4khiwu7ctq2o7wcygqqwlfda5lti6y"

@@ -1,0 +1,22 @@
+#%Module
+# 
+
+# Clashes
+conflict autoconf
+
+# The text to print if someone types "module help libtool/2.4.6"
+proc ModulesHelp { } {
+puts stderr "\t autoconf 2.71"
+puts stderr "\t=============\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set ROOT /mnt/lustre/indy2lfs/sw/autoconf/2.71
+
+prepend-path PATH $ROOT/bin
+prepend-path MANPATH $ROOT/share/man
+prepend-path ACLOCAL_PATH $ROOT/share/autoconf
+

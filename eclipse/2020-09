@@ -1,0 +1,18 @@
+#%Module######################################################################
+##
+##      Eclipse modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths for Eclipse 2020-09"
+        puts stderr "Installed by W. Lucas, EPCC, 4 Dec 2020"
+}
+
+module load java
+
+#set base        /mnt/lustre/indy2lfs/sw/new_eclipse/eclipse
+set base        /mnt/lustre/indy2lfs/sw/new_eclipse/eclipse
+set ver         2020-09
+set path        $base
+
+prepend-path    PATH	$path/
+

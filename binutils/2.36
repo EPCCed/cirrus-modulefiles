@@ -1,0 +1,16 @@
+#%Module1.0
+##
+
+module-whatis "The GNU Binary Utilities, or binutils, are a set of programming tools for creating and managing binary programs, object files, libraries, profile data, and assembly source code."
+
+proc ModulesHelp { } {
+}
+
+# Set the path to this installation
+set BINUTILS_CURPATH   /lustre/sw/binutils/2.36
+
+prepend-path PATH               $BINUTILS_CURPATH/bin
+prepend-path MANPATH            $BINUTILS_CURPATH/share/man
+prepend-path LD_LIBRARY_PATH    $BINUTILS_CURPATH/lib
+prepend-path CPATH              $BINUTILS_CURPATH/include
+

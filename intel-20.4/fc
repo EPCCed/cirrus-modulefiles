@@ -1,0 +1,33 @@
+#%Module######################################################################
+##
+##      intel parallel studio modulefile
+##
+
+proc ModulesHelp { } {
+    puts stderr "Sets up the paths for Intel Fortran compiler 2020.4.304 ()"
+}
+
+set sys         [uname sysname]
+set mach        [uname machine]
+set base        /mnt/lustre/indy2lfs/sw/intel
+set ver         compilers_and_libraries_2020.4.304
+set path        $base/$ver
+
+if { [file exists "/bin/uname"] } {
+   set mach [ exec /bin/uname -m ]
+}
+
+if { $sys == "Linux" } {
+
+   set arch intel64
+
+   module load intel-license
+   module load gcc
+   prepend-path MANPATH $path/linux/man/common
+   prepend-path LD_LIBRARY_PATH $path/linux/compiler/lib/$arch
+   prepend-path NLSPATH $base/debugger_2020/gdb/$arch
+   prepend-path NLSPATH $path/linux/compiler/lib/$arch
+   prepend-path PATH $base/debugger_2020/gdb/$arch
+   prepend-path PATH $path/linux/bin/$arch
+}
+

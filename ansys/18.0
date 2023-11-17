@@ -1,0 +1,19 @@
+#%Module
+#
+# Module definition for ANSYS Fluent
+#
+ 
+# Clashes
+#conflict 
+
+proc ModulesHelp { } {
+puts stderr "ANSYS Fluent 18.0"
+puts stderr "==============\n"
+puts stderr "This module sets up your environment to access ANSYS Fluent 18.0.\n"
+puts stderr "\tInstalled by: E.Breitmoser, EPCC"
+puts stderr "\tDate: 26 June 2017\n"
+}
+
+#module load mpt
+set ANSYS_CURPATH /mnt/lustre/indy2lfs/sw/ansys/v180
+prepend-path PATH $ANSYS_CURPATH/fluent/bin

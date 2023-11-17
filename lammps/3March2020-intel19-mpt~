@@ -1,0 +1,19 @@
+#%Module
+#
+ 
+# Clashes
+conflict lammps
+
+proc ModulesHelp { } {
+puts stderr "LAMMPS 3Mar2020"
+puts stderr "================\n"
+puts stderr "This module sets up your environment to access LAMMPS 3Mar2020.\n"
+puts stderr "\tInstalled by: Luis Cebamanos, EPCC"
+puts stderr "\tDate: 23 Jun 2020\n"
+}
+
+module load fftw/3.3.8-intel19
+module load zlib/1.2.11
+module load mpt/2.22 
+
+prepend-path PATH /lustre/sw/LAMMPS/3March20_intel19_mpt222/src

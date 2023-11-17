@@ -1,0 +1,17 @@
+#%Module1.0
+## Module created by Luis Cebamanos, EPCC
+##
+module-whatis "libpng@1.6.30"
+
+proc ModulesHelp { } {
+puts stderr "libpng is the official Portable Network Graphics reference library."
+puts stderr "It is a platform-independent library that contains C functions for handling PNG images."
+
+}
+
+
+prepend-path CMAKE_PREFIX_PATH "/lustre/sw/libpng/1.6.30"
+prepend-path LIBRARY_PATH "/lustre/sw/libpng/1.6.30/lib"
+prepend-path LD_LIBRARY_PATH "/lustre/sw/libpng/1.6.30/lib"
+prepend-path PKG_CONFIG_PATH "/lustre/sw/libpng/1.6.30/lib/pkgconfig"
+prepend-path CPATH "/lustre/sw/libpng/1.6.30/include"

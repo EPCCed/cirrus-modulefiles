@@ -1,0 +1,22 @@
+#%Module
+#
+ 
+# Clashes
+conflict lammps
+
+proc ModulesHelp { } {
+puts stderr "LAMMPS 3Mar2020"
+puts stderr "================\n"
+puts stderr "This module sets up your environment to access LAMMPS 23Jun2022.\n"
+puts stderr "\tInstalled by: Julien Sindt, EPCC"
+puts stderr "\tDate: 6 Sept 2022\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+module load fftw/3.3.8-intel19
+module load mpt/2.25 
+
+prepend-path PATH /mnt/lustre/indy2lfs/sw/LAMMPS/23Jun22_intel19_mpt225/bin/

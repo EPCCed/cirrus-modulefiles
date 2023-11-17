@@ -1,0 +1,54 @@
+#%Module
+#
+
+# Clashes
+conflict python
+
+proc ModulesHelp { } {
+  puts stderr "Python 3.9.13"
+  puts stderr "=============\n"
+  puts stderr "A Miniconda3 (Python 3.9.13) environment tailored for the Cirrus CPU nodes.\n"
+  puts stderr "This environment features mpi4py 3.1.3 linked with OpenMPI 4.1.4 (and UCX 1.9.0)."
+  puts stderr "It also provides a suite of packages pertinent to parallel processing and numerical analysis,"
+  puts stderr "e.g., dask, ipyparallel, jupyter, matplotlib, numpy, pandas and scipy.\n"
+  puts stderr "After you have loaded this module, simply run \"pip list\" to see the full package list.\n"
+  puts stderr "To show the MPI library supporting mpi4py, simply start a python session and run the following commands."
+  puts stderr ">>> from mpi4py import MPI"
+  puts stderr ">>> MPI.Get_library_version()\n"
+  puts stderr "Please note, this module can only be used on the Cirrus CPU nodes.\n"
+  puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/pyenvs/python/build_python_3.9.13_cirrus_cpu.md \n"
+  puts stderr "Installed by: M. Bareford, EPCC"
+  puts stderr "Date: 12 September 2022\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set MINICONDA3_VERSION 4.12.0
+set MINICONDA3_PYTHON_VERSION 3.9.13
+set MINICONDA3_PYTHON_LABEL1 py39
+set MINICONDA3_PYTHON_LABEL2 python3.9
+
+setenv MINICONDA3_PYTHON_VERSION $MINICONDA3_PYTHON_VERSION
+setenv MINICONDA3_PYTHON_LABEL $MINICONDA3_PYTHON_LABEL2
+
+set OPENMPI_VERSION 4.1.4
+
+module load openmpi/$OPENMPI_VERSION
+
+set PYTHON_ENV_ROOT /mnt/lustre/indy2lfs/sw/miniconda3/$MINICONDA3_VERSION-$MINICONDA3_PYTHON_LABEL1
+
+prepend-path PATH $PYTHON_ENV_ROOT/condabin
+prepend-path PATH $PYTHON_ENV_ROOT/bin
+
+prepend-path MANPATH $PYTHON_ENV_ROOT/share/man
+
+prepend-path LIBRARY_PATH $PYTHON_ENV_ROOT/lib
+
+append-path LD_LIBRARY_PATH $PYTHON_ENV_ROOT/lib
+prepend-path LD_LIBRARY_PATH /lib64
+
+prepend-path PYTHONPATH $PYTHON_ENV_ROOT/lib/$MINICONDA3_PYTHON_LABEL2/site-packages
+
+setenv MINICONDA3_BIN_PATH $PYTHON_ENV_ROOT/bin

@@ -1,0 +1,57 @@
+#%Module
+#
+# Module definition for Star CCM+ 15.06.008 (aka 2020.3.1)
+#
+# kevin@epcc.ed.ac.uk January 2021
+# Updated for VTK     February 2021
+# Clashes
+
+conflict starccm+
+
+proc ModulesHelp { } {
+
+ puts stderr "\tStar CCM+ 15.04.010-R8 R8"
+ puts stderr "\t==============\n"
+ puts stderr "\tThis module provides access to Star-CCM+ 15.06.008-R8."
+ puts sterrr "\t(Also known as 2021.3.1)"
+ puts stderr "\tFor access to STARCMM+ please contact the Cirrus  helpdesk"
+ puts stderr "\tat support@cirrus.ac.uk\n"
+ puts stderr "\tInstalled by: Kevin Stratford, EPCC"
+ puts stderr "\tDate: January 2021\n"
+}
+
+if { [ module-info mode load ] } {
+    puts stderr "STAR-CCM+ users must have a valid STAR-CCM+ license."
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+# Set the path to this installation
+
+set STARCCM_DIR /mnt/lustre/indy2lfs/sw/STARCCM+/15.06.008-R8/STAR-CCM+15.06.008-R8
+
+module load mpt/2.25
+setenv SGI_MPI_HOME /opt/hpe/hpc/mpt/mpt-2.25/
+
+module load libtirpc/1.2.6
+module load libnsl/1.3.0
+
+# Make sure the binaries are added to PATH
+# Some care in the order of LD_LIBRARY_PATH may be required
+# as some .so file names are replicated within the installation
+# e.g., libstdc++ occurs in various versions...
+
+prepend-path  PATH            $STARCCM_DIR/star/bin
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/mkl/2017.2-cda-001/linux/lib/intel64
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/heeds/2019.2.2.10536/linux-x86_64/LX64
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/boost/1_68_0c/linux-x86_64/gnu7.1
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/vtk/starvtk-6.1.0-cda-015/linux-x86_64-2.12/gnu7.1/lib/release
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/glew/2.1.0/linux-x86_64-2.12/gnu7.1
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/ffmpeg/4.1.3/linux-x86_64-2.12/gnu7.1
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/embree/3.5.2-avx512/linux-x86_64-2.12/intel18.0.3
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/tbb/2017_U6b/linux-x86_64-2.12/gnu7.1
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/star/lib/linux-x86_64-2.17/gnu9.2-r8/lib
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/star/lib/linux-x86_64-2.17/system/gnu9.2-64
+

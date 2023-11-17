@@ -1,0 +1,33 @@
+#%Module
+#
+ 
+# Clashes
+conflict namd
+
+proc ModulesHelp { } {
+puts stderr "NAMD 2.14"
+puts stderr "========="
+puts stderr "NAMD is a parallel molecular dynamics code designed for high-performance simulation of large biomolecular systems,"
+puts stderr "see https://www.ks.uiuc.edu/Research/namd/ .\n"
+puts stderr "This NAMD 2.14 has been built with SMP support, which introduces a dedicated communication thread for every process.\n"
+puts stderr "This module sets up your environment to access NAMD 2.14 - the executable file is called namd2."
+puts stderr "NAMD 2.14 was built with GCC 8.2.0; it uses Intel MPI 19, FFTW 3.3.9, TCL 8.5.9 and Charm++ 6.10.2.\n"
+puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/apps/NAMD/build_namd_2.14_cirrus_gcc8_impi19.md \n"
+puts stderr "\tInstalled by: M. Bareford, EPCC"
+puts stderr "\tModified date: 25 Jan 2022\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set NAMD_ROOT /mnt/lustre/indy2lfs/sw/namd
+set NAMD_PATH $NAMD_ROOT/2.14
+set TCL_PATH $NAMD_ROOT/tcl/8.5.9
+
+module load gcc/8.2.0
+module load intel-mpi-19/19.0.0.117
+module load fftw/3.3.9-impi19-gcc8
+
+prepend-path LD_LIBRARY_PATH $TCL_PATH/lib
+prepend-path PATH $NAMD_PATH/bin  

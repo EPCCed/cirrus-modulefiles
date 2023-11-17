@@ -1,0 +1,31 @@
+#%Module
+#
+
+# Clashes
+conflict sqlite
+
+proc ModulesHelp { } {
+puts stderr "SQLite 3.40.1"
+puts stderr "============="
+puts stderr "SQLite is a C-language library that implements a small, fast, self-contained, high-reliability,"
+puts stderr "full-featured, SQL database engine. See https://www.sqlite.org/index.html .\n"
+puts stderr "The SQLite binaries and libraries were built using GCC 8.2.0.\n"
+puts stderr "\tInstalled by: M. Bareford, EPCC"
+puts stderr "\tModified date: 25 Jan 2023\n"
+}
+
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+
+set SQLITE_ROOT /mnt/lustre/indy2lfs/sw/sqlite/3.40.1
+
+prepend-path PATH               $SQLITE_ROOT/bin
+prepend-path CPATH              $SQLITE_ROOT/include
+prepend-path MANPATH            $SQLITE_ROOT/share/man
+prepend-path LIBRARY_PATH       $SQLITE_ROOT/lib
+prepend-path LD_LIBRARY_PATH    $SQLITE_ROOT/lib
+prepend-path PKG_CONFIG_PATH    $SQLITE_ROOT/lib/pkgconfig
+prepend-path CMAKE_PREFIX_PATH  $SQLITE_ROOT

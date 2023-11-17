@@ -1,0 +1,22 @@
+#%Module1.0
+## Module file created by Iakovos Panourgias, EPCC
+## Date: 29 Jun 2020
+##
+
+module-whatis "Use ImageMagick® to create, edit, compose, or convert bitmap images. It can read and write images in a variety of formats (over 200) including PNG, JPEG, GIF, HEIC, TIFF, DPX, EXR, WebP, Postscript, PDF, and SVG. Use ImageMagick to resize, flip, mirror, rotate, distort, shear and transform images, adjust image colors, apply various special effects, or draw text, lines, polygons, ellipses and Bézier curves."
+
+proc ModulesHelp { } {
+puts stderr "Use ImageMagick® to create, edit, compose, or convert bitmap images. It can read and write images in a variety of formats (over 200) including PNG, JPEG, GIF, HEIC, TIFF, DPX, EXR, WebP, Postscript, PDF, and SVG. Use ImageMagick to resize, flip, mirror, rotate, distort, shear and transform images, adjust image colors, apply various special effects, or draw text, lines, polygons, ellipses and Bézier curves."
+}
+
+# Set the path to this installation
+set IM_CURPATH /mnt/lustre/indy2lfs/sw/ImageMagick/7.0.10-22
+
+prepend-path PATH               $IM_CURPATH/bin/
+prepend-path LIBRARY_PATH       $IM_CURPATH/lib/
+prepend-path LD_LIBRARY_PATH    $IM_CURPATH/lib/
+prepend-path CPATH              $IM_CURPATH/include/
+prepend-path PKG_CONFIG_PATH    $IM_CURPATH/lib/pkgconfig/
+prepend-path CMAKE_PREFIX_PATH  $IM_CURPATH/
+prepend-path CPLUS_INCLUDE_PATH $IM_CURPATH//include/
+

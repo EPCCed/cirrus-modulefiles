@@ -1,0 +1,2 @@
+#%Module
+set ModulesVersion "cuda-11.2"

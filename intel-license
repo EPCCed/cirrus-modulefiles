@@ -1,0 +1,9 @@
+#%Module
+#
+# Provides the current valid INTEL_LICENSE_FILE
+#
+# This may be included by all relevant intel modules.
+# Added kevin@epcc.ed.ac.uk Jun 2020
+#
+
+prepend-path INTEL_LICENSE_FILE 28518@cirrus-services1

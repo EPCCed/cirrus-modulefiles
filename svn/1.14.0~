@@ -1,0 +1,26 @@
+#%Module1.0
+#
+# Module to provide various utilities:
+
+module-whatis "Subversion"
+
+proc ModulesHelp { } {
+
+  puts stderr "Subversion"
+  puts stderr "==========\n"
+
+  puts stderr "Subversion 1.14.0\n"
+  puts stderr "See https://subversion.apache.org/\n"
+  puts stderr "\n"
+
+  puts stderr "Installed: 17 July 2020"
+  puts stderr "Installed by: Kevin Stratford, EPCC"
+
+}
+
+prepend-path PATH "/mnt/lustre/sw/svn/1.14.0/bin"
+
+if { [module-info mode remove] } {
+   # No message
+}
+

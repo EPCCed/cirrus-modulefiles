@@ -1,0 +1,43 @@
+#%Module
+##
+#
+
+conflict netcdf
+
+set _module_name  [module-info name]
+proc ModulesHelp {} {
+
+  puts stderr "netcdf-parallel 4.6.2"
+  puts stderr "=====================\n"
+
+  puts stderr "This module adds netcdf-parallel for C and Fortran to your environment."
+
+  puts stderr "\tInstalled: 3 August 2022"
+  puts stderr "\tInstalled by: W. Lucas, EPCC"
+
+}
+
+set base        /mnt/lustre/indy2lfs/sw/netcdfparallel
+set ver         4.6.2-intel19-mpt225
+set path        $base/$ver
+
+prepend-path    LIBRARY_PATH        $path/lib
+prepend-path    LD_LIBRARY_PATH     $path/lib
+prepend-path    PATH                $path/bin
+prepend-path    C_INCLUDE_PATH      $path/include
+prepend-path    FPATH               $path/include
+prepend-path    CPATH               $path/include
+prepend-path    CPLUS_INCLUDE_PATH  $path/include
+prepend-path    MANPATH             $path/man
+prepend-path    NETCDF_DIR          $path
+
+
+if ![ is-loaded hdf5parallel/1.10.6-intel19-mpt225 ] {
+    puts stderr "Autoloading hdf5parallel/1.10.6-intel19-mpt225"
+    module load hdf5parallel/1.10.6-intel19-mpt225
+} elseif [ is-loaded hdf5parallel ] {
+    puts stderr "Autoswitching to hdf5parallel/1.10.6-intel19-mpt225"
+    module unload hdf5parallel
+    module load hdf5parallel/1.10.6-intel19-mpt225
+}
+
