@@ -1,0 +1,24 @@
+#%Module
+# 
+# Module definition for Eigen 3.4.0
+#
+# M. Bareford 08 December 2023
+
+# Clashes
+conflict eigen
+
+# The text to print if someone types "module help eigen/3.4.0"
+proc ModulesHelp { } {
+puts stderr "\tEigen 3.4.0"
+puts stderr "\t===========\n"
+puts stderr "\tEigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms."
+puts stderr "\tDate: December 2024\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set EIGEN_ROOT /mnt/lustre/indy2lfs/sw/eigen/3.4.0
+
+prepend-path CPATH $EIGEN_ROOT/include
