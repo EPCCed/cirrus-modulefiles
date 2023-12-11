@@ -1,0 +1,24 @@
+#%Module1.0
+## Module file created by Michael Bareford, EPCC
+## Date: 11 December 2023
+##
+
+
+module-whatis "The MPFR library is a C library for multiple-precision floating-point computations with correct rounding. MPFR has continuously been supported by the INRIA and the current main authors come from the Caramba and AriC project-teams at Loria (Nancy, France) and LIP (Lyon, France) respectively; see more on the credit page. MPFR is based on the MPFR multiple-precision library."
+
+proc ModulesHelp { } {
+puts stderr "The MPFR library is a C library for multiple-precision floating-point computations with correct rounding. MPFR has continuously been supported by the INRIA and the current main authors come from the Caramba and AriC project-teams at Loria (Nancy, France) and LIP (Lyon, France) respectively; see more on the credit page. MPFR is based on the MPFR multiple-precision library."
+}
+
+if ![ is-loaded gmp/6.3.0-gcc ] {
+    module load gmp/6.3.0-gcc
+}
+
+set MPFR_ROOT /mnt/lustre/indy2lfs/sw/mpfr/4.2.1-gcc
+
+prepend-path PATH               $MPFR_ROOT/bin
+prepend-path LIBRARY_PATH       $MPFR_ROOT/lib
+prepend-path LD_LIBRARY_PATH    $MPFR_ROOT/lib
+prepend-path CPATH              $MPFR_ROOT/include
+prepend-path CPLUS_INCLUDE_PATH $MPFR_ROOT/include
+prepend-path PKG_CONFIG_PATH    $MPFR_ROOT/lib/pkgconfig
