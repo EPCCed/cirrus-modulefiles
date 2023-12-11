@@ -1,6 +1,6 @@
 #%Module1.0
 ## Module file created by Michael Bareford, EPCC
-## Date: 8th Dec 2023 
+## Date: 11th Dec 2023 
 ##
 
 
@@ -15,7 +15,7 @@ puts stderr "GMP has a rich set of functions, and the functions have a regular i
 
 
 set GMP_ROOT /mnt/lustre/indy2lfs/sw/gmp
-set GMP_INSTALL_ROOT $GMP_ROOT/6.3.0-intel
+set GMP_INSTALL_ROOT $GMP_ROOT/6.3.0-gcc
 set GMP_BUILD_ROOT $GMP_ROOT/gmp-6.3.0
 
 prepend-path PATH               $GMP_INSTALL_ROOT/bin
