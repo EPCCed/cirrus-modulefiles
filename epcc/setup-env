@@ -12,7 +12,7 @@ puts stderr "Environment setup for Cirrus. At the moment this:\n"
 puts stderr "\t* Adds to the the default MODULEPATH to make software modules available"
 puts stderr "\t* Sets SBATCH_EXPORT=none to avoid login shell modules being exported to batch jobs\n"
 
-puts stderr "\tInstalled: 19 June 2020"
+puts stderr "\tInstalled: 29 Jan 2024"
 puts stderr "\tInstalled by: Andy Turner, EPCC"
 
 }
@@ -29,7 +29,7 @@ if { [module-info mode remove] } {
     puts stderr "\nWarning: Unloading the epcc/setup-env module will stop many"
     puts stderr "modules being available on the system. If you do this by" 
     puts stderr "accident, you can recover the situation with the commands:\n"
-    puts stderr "\tmodule use /mnt/lustre/indy2lfs/sw/modulefiles"
+    puts stderr "\tmodule use /mnt/lustre/e1000/home/y07/shared/cirrus-modulefiles"
     puts stderr "\tmodule load epcc/setup-env"
 }
 
