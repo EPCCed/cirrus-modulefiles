@@ -22,10 +22,15 @@ if ![ is-loaded intel-20.4/mpi ] {
     module load intel-20.4/mpi
 }
 
-prepend-path PATH "/mnt/lustre/indy2lfs/sw/fftw/3.3.10-intel20.4/bin"
-prepend-path CMAKE_PREFIX_PATH "/mnt/lustre/indy2lfs/sw/fftw/3.3.10-intel20.4"
-prepend-path LIBRARY_PATH "/mnt/lustre/indy2lfs/sw/fftw/3.3.10-intel20.4/lib"
-prepend-path LD_LIBRARY_PATH "/mnt/lustre/indy2lfs/sw/fftw/3.3.10-intel20.4/lib"
-prepend-path PKG_CONFIG_PATH "/mnt/lustre/indy2lfs/sw/fftw/3.3.10-intel20.4/lib/pkgconfig"
-prepend-path MANPATH "/mnt/lustre/indy2lfs/sw/fftw/3.3.10-intel20.4/share/man"
-prepend-path CPATH "/mnt/lustre/indy2lfs/sw/fftw/3.3.10-intel20.4/include"
+set FFTW_ROOT /mnt/lustre/indy2lfs/sw/fftw/3.3.10-intel20.4
+
+setenv FFTW_INC $FFTW_ROOT/include
+setenv FFTW_DIR $FFTW_ROOT/lib
+
+prepend-path PATH $FFTW_ROOT/bin
+prepend-path CMAKE_PREFIX_PATH $FFTW_ROOT
+prepend-path LIBRARY_PATH $FFTW_ROOT/lib
+prepend-path LD_LIBRARY_PATH $FFTW_ROOT/lib
+prepend-path PKG_CONFIG_PATH $FFTW_ROOT/lib/pkgconfig
+prepend-path MANPATH $FFTW_ROOT/share/man
+prepend-path CPATH $FFTW_ROOT/include

@@ -16,6 +16,9 @@ puts stderr "applications."
 
 set FFTW_INSTALL "/mnt/lustre/indy2lfs/sw/fftw/3.3.10-ompi4-cuda116-gcc8"
 
+setenv FFTW_INC $FFTW_INSTALL/include
+setenv FFTW_DIR $FFTW_INSTALL/lib
+
 prepend-path PATH "$FFTW_INSTALL/bin"
 prepend-path CMAKE_PREFIX_PATH "$FFTW_INSTALL"
 prepend-path LIBRARY_PATH "$FFTW_INSTALL/lib"

@@ -15,7 +15,7 @@ conflict nvhpc-byo-compiler
 # kevin@epcc.ed.ac.uk add at 2022-06--29
 # We load gcc/8.2.0 at install time, which is used at install time to
 # generate the correct scripts.
-! I make this consistent here:
+# I make this consistent here:
 if [ is-loaded gcc ] {
     if ![ is-loaded gcc/8.2.0 ] {
         module swap gcc gcc/8.2.0
