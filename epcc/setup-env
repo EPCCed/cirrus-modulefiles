@@ -18,7 +18,7 @@ puts stderr "\tInstalled by: Andy Turner, EPCC"
 }
 
 #module use /usr/share/Modules/modulefiles
-module use /mnt/lustre/indy2lfs/sw/modulefiles
+module use /work/y07/shared/cirrus-modulefiles
 
 module load epcc/utils
 
