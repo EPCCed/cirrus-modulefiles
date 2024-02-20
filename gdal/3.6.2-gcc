@@ -12,9 +12,9 @@ puts stderr "It presents a single raster abstract data model and vector abstract
 puts stderr "to the calling application for all supported formats. GDAL also comes with a "
 puts stderr "variety of useful command line utilities for data translation and processing."
 puts stderr "See https://gdal.org/index.html .\n"
-puts stderr "The GDAL binaries and libraries were built using GCC 8.2.0 and PROJ 9.1.1.\n"
+puts stderr "The GDAL binaries and libraries were built using GCC 10.2.0 and PROJ 9.1.1.\n"
 puts stderr "\tInstalled by: M. Bareford, EPCC"
-puts stderr "\tModified date: 25 Jan 2023\n"
+puts stderr "\tModified date: 16 Feb 2024\n"
 }
 
 
@@ -23,14 +23,13 @@ set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
 
-if ![ is-loaded gcc/8.2.0 ] {
-    module load gcc/8.2.0
+if ![ is-loaded gcc/10.2.0 ] {
+    module load gcc/10.2.0
 }
 
-module use /mnt/lustre/indy2lfs/sw/modulefiles-development
 module load proj/9.1.1
 
-set GDAL_ROOT /mnt/lustre/indy2lfs/sw/gdal/3.6.2-gcc
+set GDAL_ROOT /work/y07/shared/cirrus-software/gdal/3.6.2-gcc
 
 setenv GDAL_CONFIG      $GDAL_ROOT/bin/gdal-config
 setenv GDAL_VERSION     3.6.2

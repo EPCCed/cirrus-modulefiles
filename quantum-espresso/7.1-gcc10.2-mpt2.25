@@ -1,0 +1,41 @@
+#%Module
+#
+# Module definition for Quantum Espresso 6.5
+#
+# Eleanor Broadway, EPCC, 15 Feb 2024
+
+proc Modules{Help {} {
+puts stderr "Quantum Espresso 7.1"
+puts stderr "====================\n"
+puts stderr "This module sets up your environment to access QE 7.1.\n"
+puts stderr "\tInstalled by: Eleanor Broadway, EPCC"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+
+set QE_CURPATH /work/y07/shared/cirrus-software/quantum-espresso/qe-7.1-gcc10.2.0-mpt2.25
+
+module load mpt 
+module load gcc 
+module load fftw/3.3.10-gcc10.2-mpt2.25 
+module load intel-20.4/cmkl
+
+
+#############module load intel-mpi-19/19.0.0.117
+# Loading the MPI module causes a weird error
+#    and the weird 15 second timeout of the HFI device
+# The root cause seems to be that when NO module file is loaded; pw.x (and others) link with:
+#   /lustre/sw/intel/compilers_and_libraries_2018.5.274/linux/mpi/intel64/lib/release_mt/libmpi.so.12
+# When the intel-mpi-19/19.0.0.117 module is loaded; pw.x (and others) link with:
+#   /lustre/sw/intel/compilers_and_libraries_2018.5.274/linux/mpi/lib64/libmpi.so.12
+#
+# With NO MODULE loaded; pw.x (and others) work using MPI and no weird timeout error.
+# With MODULE loaded; pw.x (and others) do NOT work and you get the weird timeout error.
+
+prepend-path PATH $QE_CURPATH/bin/
+
+setenv OMP_NUM_THREADS 1
+

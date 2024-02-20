@@ -1,0 +1,41 @@
+#%Module1.0
+## Module created by Michael Bareford, EPCC
+##
+## 19 Feb 2024
+## fftw@3.3.10
+## Compiled with GCC 10.2.0 compiler, OpenMPI 4.1.6 and CUDA 11.8
+module-whatis "fftw 3.3.10 compiled with GCC 10.2.0, OpenMPI 4.1.6 and CUDA 11.8"
+
+proc ModulesHelp { } {
+puts stderr "FFTW is a C subroutine library for computing the discrete Fourier"
+puts stderr "transform (DFT) in one or more dimensions, of arbitrary input size, and"
+puts stderr "of both real and complex data (as well as of even/odd data, i.e. the"
+puts stderr "discrete cosine/sine transforms or DCT/DST). We believe that FFTW, which"
+puts stderr "is free software, should become the FFT library of choice for most"
+puts stderr "applications."
+}
+
+if ![ is-loaded gcc/10.2.0 ] {
+    module load gcc/10.2.0
+}
+
+if ![ is-loaded nvidia/nvhpc-nompi/22.11 ] {
+    module load nvidia/nvhpc-nompi/22.11
+}
+
+if ![ is-loaded openmpi/4.1.6-cuda-11.8 ] {
+    module load openmpi/4.1.6-cuda-11.8
+}
+
+set FFTW_ROOT /work/y07/shared/cirrus-software/fftw/3.3.10-gcc10.2-ompi4-cuda11.8
+
+setenv FFTW_INC $FFTW_ROOT/include
+setenv FFTW_DIR $FFTW_ROOT/lib
+
+prepend-path PATH $FFTW_ROOT/bin
+prepend-path CMAKE_PREFIX_PATH $FFTW_ROOT
+prepend-path LIBRARY_PATH $FFTW_ROOT/lib
+prepend-path LD_LIBRARY_PATH $FFTW_ROOT/lib
+prepend-path PKG_CONFIG_PATH $FFTW_ROOT/lib/pkgconfig
+prepend-path MANPATH $FFTW_ROOT/share/man
+prepend-path CPATH $FFTW_ROOT/include

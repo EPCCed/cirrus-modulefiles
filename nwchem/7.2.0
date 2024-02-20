@@ -15,5 +15,5 @@ puts stderr "\tDate: 2023-12-04\n"
 module load gcc
 module load mpt
 
-prepend-path PATH "/mnt/lustre/indy2lfs/sw/nwchem/nwchem-7.2.0/bin/LINUX64"
-setenv NWCHEM "/mnt/lustre/indy2lfs/sw/nwchem/nwchem-7.2.0"
+prepend-path PATH "/work/y07/shared/cirrus-software/nwchem/nwchem-7.2.0/bin/LINUX64"
+setenv NWCHEM "/work/y07/shared/cirrus-software/nwchem/nwchem-7.2.0"

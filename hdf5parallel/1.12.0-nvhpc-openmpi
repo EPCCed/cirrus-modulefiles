@@ -22,7 +22,7 @@ if ![ is-loaded nvidia/nvhpc ] {
 set is_module_rm [module-info mode remove]
 
 set HDF5_LEVEL 1.12.0-nvhpc
-set HDF5_CURPATH /mnt/lustre/indy2lfs/sw/hdf5parallel/$HDF5_LEVEL
+set HDF5_CURPATH /work/y07/shared/cirrus-software/hdf5parallel/$HDF5_LEVEL
 prepend-path PATH $HDF5_CURPATH/bin
 append-path MANPATH $HDF5_CURPATH/share/man
 prepend-path LD_LIBRARY_PATH $HDF5_CURPATH/lib

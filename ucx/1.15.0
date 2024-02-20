@@ -11,7 +11,7 @@ puts stderr "mechanisms for efficient intra-node communication."
 conflict ucx
 
 # Set the path to this installation
-set ROOT /mnt/lustre/indy2lfs/sw/ucx/1.15.0
+set ROOT /work/y07/shared/cirrus-software/ucx/1.15.0
 setenv UCX_ROOT $ROOT
 
 prepend-path PATH               $ROOT/bin

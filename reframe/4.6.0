@@ -1,0 +1,4 @@
+#%Module 
+
+
+prepend-path PATH /work/y07/shared/cirrus-software/reframe/bin/

@@ -9,8 +9,8 @@ proc ModulesHelp { } {
   puts stderr "This module adds the GCC 10.2.0 compilers and libraries to the"
   puts stderr "path. The Fortran, C, and C++ compilers are available.\n"
 
-  puts stderr "\tInstalled: 23 August 2021"
-  puts stderr "\tInstalled by: L. Stoltzfus, EPCC"
+  puts stderr "\tInstalled: 31 January 2024"
+  puts stderr "\tInstalled by: W. Lucas, EPCC"
 
 }
 
@@ -19,7 +19,7 @@ conflict gcc
 set is_module_rm [module-info mode remove]
 
 set GCC_LEVEL 10.2.0
-set GCC_CURPATH /mnt/lustre/indy2lfs/sw/gcc/10.2.0
+set GCC_CURPATH /work/y07/shared/cirrus-software/gcc/$GCC_LEVEL
 set GCC_MODULEPATH $GCC_CURPATH/modules
 prepend-path PATH $GCC_CURPATH/bin
 append-path MANPATH $GCC_CURPATH/share/man

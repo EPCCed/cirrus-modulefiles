@@ -7,9 +7,10 @@
 # Clashes
 #
 
-module load udunits/2.2.26
+#module load udunits/2.2.26
 #module load hdf5parallel/1.10.4-intel18-impi18
-module load netcdf-parallel/4.6.2-intel18-impi18
+#module load netcdf-parallel/4.6.2-intel18-impi18
+module load netcdf-parallel/4.9.2-intel20-impi20
 
 
 # The text to print if someone types "module help ncview/2.1.7"
@@ -29,6 +30,7 @@ set sys        [uname sysname]
 
 
 # Make sure the binaries are added to PATH
-prepend-path  PATH              /mnt/lustre/indy2lfs/sw/ncview/2.1.7/bin
-prepend-path  LD_LIBRARY_PATH   /mnt/lustre/indy2lfs/sw/libpng/1.6.30/lib
+prepend-path  PATH              /work/y07/shared/cirrus-software/ncview/2.1.7/bin
+prepend-path  LD_LIBRARY_PATH   /work/y07/shared/cirrus-software/nco/5.1.9/lib
+#prepend-path  LD_LIBRARY_PATH   /mnt/lustre/indy2lfs/sw/libpng/1.6.30/lib
 

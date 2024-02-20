@@ -1,0 +1,37 @@
+#%Module1.0
+## Module created by Rui Apóstolo, EPCC
+##
+## 15 Feb 2024
+## fftw@3.3.10
+## Compiled with gcc 12.3.0 compiler and intel-20.4 MPI
+module-whatis "fftw 3.3.10 compiled with gcc 12.3.0 and intel-20.4 MPI"
+
+proc ModulesHelp { } {
+puts stderr "FFTW is a C subroutine library for computing the discrete Fourier"
+puts stderr "transform (DFT) in one or more dimensions, of arbitrary input size, and"
+puts stderr "of both real and complex data (as well as of even/odd data, i.e. the"
+puts stderr "discrete cosine/sine transforms or DCT/DST). We believe that FFTW, which"
+puts stderr "is free software, should become the FFT library of choice for most"
+puts stderr "applications."
+}
+
+if ![ is-loaded gcc/12.3.0-offload ] {
+    module load gcc/12.3.0-offload
+}
+
+if ![ is-loaded intel-20.4/mpi ] {
+    module load intel-20.4/mpi
+}
+
+set FFTW_ROOT /work/y07/shared/cirrus-software/fftw/3.3.10-gcc12.3-impi20.4
+
+setenv FFTW_INC $FFTW_ROOT/include
+setenv FFTW_DIR $FFTW_ROOT/lib
+
+prepend-path PATH $FFTW_ROOT/bin
+prepend-path CMAKE_PREFIX_PATH $FFTW_ROOT
+prepend-path LIBRARY_PATH $FFTW_ROOT/lib
+prepend-path LD_LIBRARY_PATH $FFTW_ROOT/lib
+prepend-path PKG_CONFIG_PATH $FFTW_ROOT/lib/pkgconfig
+prepend-path MANPATH $FFTW_ROOT/share/man
+prepend-path CPATH $FFTW_ROOT/include

@@ -1,0 +1,21 @@
+#%Module1.0
+module-whatis "ucx @1.15.0-cuda-11.8"
+
+proc ModulesHelp { } {
+puts stderr "Unified Communication X (UCX)"
+puts stderr "Intended for use with nvidia/nvhpc-nompi/22.11"
+puts stderr "Installed Feb 2024 (m.bareford@epcc.ed.ac.uk)"
+}
+
+conflict ucx
+
+# Set the path to this installation
+set ROOT /work/y07/shared/cirrus-software/ucx/1.15.0-cuda-11.8
+setenv UCX_ROOT $ROOT
+
+prepend-path PATH               $ROOT/bin
+prepend-path CMAKE_PREFIX_PATH  $ROOT/
+prepend-path LIBRARY_PATH       $ROOT/lib
+prepend-path LD_LIBRARY_PATH    $ROOT/lib
+prepend-path PKG_CONFIG_PATH    $ROOT/lib/pkgconfig
+prepend-path CPATH              $ROOT/include

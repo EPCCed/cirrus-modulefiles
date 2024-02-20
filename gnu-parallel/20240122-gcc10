@@ -1,0 +1,14 @@
+#%Module1.0
+## Module file created by Michael Bareford, EPCC
+## Date: 16 Feb 2024
+##
+
+module-whatis "GNU parallel is a shell tool for executing jobs in parallel using one or more computers."
+
+proc ModulesHelp { } {
+puts stderr "GNU parallel is a shell tool for executing jobs in parallel using one or more computers."
+puts stderr "See https://www.gnu.org/software/parallel/ ."
+}
+
+prepend-path PATH "/work/y07/shared/cirrus-software/gnu-parallel/20240122/bin"
+prepend-path MANPATH "/work/y07/shared/cirrus-software/gnu-parallel/20240122/share/man"

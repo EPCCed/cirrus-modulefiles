@@ -9,14 +9,14 @@ puts stderr "strace"
 puts stderr "====================\n"
 puts stderr "This module sets up your environment to access strace. Required for the compute nodes."
 puts stderr "\tInstalled by: A. Jackson, EPCC"
-puts stderr "\tDate: September 2020\n"
+puts stderr "\tDate: February 2024\n"
 }
 
 set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set STRACE_CURPATH /lustre/sw/strace/5.8
+set STRACE_CURPATH /work/y07/shared/cirrus-software/strace/5.8
 
 prepend-path  PATH   $STRACE_CURPATH/bin
 

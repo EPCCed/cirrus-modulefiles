@@ -4,13 +4,13 @@ module-whatis "ucx @1.15.0-cuda-11.6"
 proc ModulesHelp { } {
 puts stderr "Unified Communication X (UCX)"
 puts stderr "Intended for use with nvidia/nvhpc-nompi/22.2"
-puts stderr "Installed Sep 2023 (m.bareford@epcc.ed.ac.uk)"
+puts stderr "Installed Feb 2024 (m.bareford@epcc.ed.ac.uk)"
 }
 
 conflict ucx
 
 # Set the path to this installation
-set ROOT /mnt/lustre/indy2lfs/sw/ucx/1.15.0-cuda-11.6
+set ROOT /work/y07/shared/cirrus-software/ucx/1.15.0-cuda-11.6
 setenv UCX_ROOT $ROOT
 
 prepend-path PATH               $ROOT/bin

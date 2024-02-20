@@ -4,10 +4,10 @@ set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-setenv EPCC_REFRAME_CONFIG /mnt/lustre/indy2lfs/sw/reframe/epcc-reframe/configuration/cirrus_settings.py
-setenv EPCC_REFRAME_TEST_DIR /mnt/lustre/indy2lfs/sw/reframe/epcc-reframe/tests
+setenv EPCC_REFRAME_CONFIG /work/y07/shared/cirrus-software/epcc-reframe/epcc-reframe/configuration/cirrus_settings.py
+setenv EPCC_REFRAME_TEST_DIR /work/y07/shared/cirrus-software/epcc-reframe/epcc-reframe/tests
 
 module load reframe
 
-prepend-path PATH /mnt/lustre/indy2lfs/sw/reframe/epcc-reframe/bin
+prepend-path PATH /work/y07/shared/cirrus-software/epcc-reframe/epcc-reframe/bin
 

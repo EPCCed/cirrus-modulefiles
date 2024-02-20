@@ -8,7 +8,7 @@ proc ModulesHelp { } {
 }
 
 set sys        [uname sysname]
-set base       /mnt/lustre/indy2lfs/sw/intel/itac/2019.5.041
+set base       /work/y07/shared/cirrus-software/intel/itac/2019.5.041
 
 if { [file exists "/bin/uname"] } {
    set arch [ exec /bin/uname -m ]

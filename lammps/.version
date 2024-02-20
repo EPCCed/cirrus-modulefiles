@@ -1,2 +1,2 @@
 #%Module
-set ModulesVersion "8Feb2023-gcc8-impi"
+set ModulesVersion "15Dec2023-gcc10.2-impi20.4"

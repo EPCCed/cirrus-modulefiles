@@ -12,23 +12,23 @@ puts stderr "see https://www.ks.uiuc.edu/Research/namd/ .\n"
 puts stderr "This NAMD 2022.07.21 nightly build release is intended for use on the Cirrus GPU Nodes (NVIDIA Tesla V100)."
 puts stderr "It has been built with SMP support, introducing a dedicated communication thread for every process.\n"
 puts stderr "This module sets up your environment to access NAMD 2022.07.21 - the executable file is called namd2."
-puts stderr "NAMD 2022.07.21 was built with GCC 8.2.0; it uses TCL 8.5.9, Charm++ 7.0.0, OpenMPI 4.1.4 and CUDA 11.8.\n"
-puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/apps/NAMD/build_namd_2022.07.21_cirrus_gcc8_ompi4_gpu.md \n"
+puts stderr "NAMD 2022.07.21 was built with GCC 10.2.0; it uses TCL 8.5.9, Charm++ 7.0.0, OpenMPI 4.1.6 and CUDA 11.8.\n"
+puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/apps/NAMD/build_namd_2022.07.21_cirrus_gcc10_ompi4_gpu.md \n"
 puts stderr "\tInstalled by: M. Bareford, EPCC"
-puts stderr "\tModified date: 6 Feb 2023\n"
+puts stderr "\tModified date: 19 Feb 2024\n"
 }
 
 set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set NAMD_ROOT /mnt/lustre/indy2lfs/sw/namd
+set NAMD_ROOT /work/y07/shared/cirrus-software/namd
 set NAMD_PATH $NAMD_ROOT/2022.07.21-gpu
 set TCL_PATH $NAMD_ROOT/tcl/8.5.9
 
 module load nvidia/nvhpc-nompi/22.11
-module load openmpi/4.1.4-cuda-11.8
-module load fftw/3.3.9-ompi4-cuda11-gcc8
+module load openmpi/4.1.6-cuda-11.8
+module load fftw/3.3.10-gcc10.2-ompi4-cuda11.8
 
 setenv NAMD_DIR $NAMD_PATH
 

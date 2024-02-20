@@ -19,6 +19,6 @@ set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set EIGEN_ROOT /mnt/lustre/indy2lfs/sw/eigen/3.4.0
+set EIGEN_ROOT /work/y07/shared/cirrus-software/eigen/3.4.0
 
 prepend-path CPATH $EIGEN_ROOT/include

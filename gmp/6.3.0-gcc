@@ -1,8 +1,7 @@
 #%Module1.0
-## Module file created by Michael Bareford, EPCC
-## Date: 11th Dec 2023 
+## Module file created by Eleanor Broadway, EPCC
+## Date: 13th Feb 2024 
 ##
-
 
 module-whatis "GMP is a free library for arbitrary precision arithmetic, operating on signed integers, rational numbers, and floating-point numbers. There is no practical limit to the precision except the ones implied by the available memory in the machine GMP runs on. GMP has a rich set of functions, and the functions have a regular interface."
 
@@ -13,8 +12,7 @@ puts stderr "precision except the ones implied by the available memory in the ma
 puts stderr "GMP has a rich set of functions, and the functions have a regular interface."
 }
 
-
-set GMP_ROOT /mnt/lustre/indy2lfs/sw/gmp
+set GMP_ROOT /work/y07/shared/cirrus-software/gmp
 set GMP_INSTALL_ROOT $GMP_ROOT/6.3.0-gcc
 set GMP_BUILD_ROOT $GMP_ROOT/gmp-6.3.0
 

@@ -20,12 +20,12 @@ set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set NAMD_ROOT /mnt/lustre/indy2lfs/sw/namd
+set NAMD_ROOT /work/y07/shared/cirrus-software/namd
 set NAMD_PATH $NAMD_ROOT/3.0a13-gpu
 
 module load nvidia/nvhpc-nompi/22.2
-module load intel-mpi-19/19.0.0.117
-module load fftw/3.3.9-impi19-gcc8
+module load intel-20.4/mpi
+module load fftw/3.3.10-gcc10.2-impi20.4
 
 prepend-path LD_LIBRARY_PATH $NAMD_PATH/lib
 prepend-path PATH $NAMD_PATH

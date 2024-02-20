@@ -10,8 +10,8 @@ puts stderr "============="
 puts stderr "SQLite is a C-language library that implements a small, fast, self-contained, high-reliability,"
 puts stderr "full-featured, SQL database engine. See https://www.sqlite.org/index.html .\n"
 puts stderr "The SQLite binaries and libraries were built using GCC 8.2.0.\n"
-puts stderr "\tInstalled by: M. Bareford, EPCC"
-puts stderr "\tModified date: 25 Jan 2023\n"
+puts stderr "\tInstalled by: Eleanor Broadway, EPCC"
+puts stderr "\tModified date: 14 February 2024\n"
 }
 
 
@@ -20,7 +20,7 @@ set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
 
-set SQLITE_ROOT /mnt/lustre/indy2lfs/sw/sqlite/3.40.1
+set SQLITE_ROOT /work/y07/shared/cirrus-software/sqlite/3.40.1
 
 prepend-path PATH               $SQLITE_ROOT/bin
 prepend-path CPATH              $SQLITE_ROOT/include

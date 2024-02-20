@@ -21,7 +21,7 @@ set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set ROOT /mnt/lustre/indy2lfs/sw/nvidia/tensorrt/8.4.3.1-u2
+set ROOT /work/y07/shared/cirrus-software/nvidia/tensorrt/8.4.3.1-u2
 
 setenv TENSORRT_ROOT $ROOT
 

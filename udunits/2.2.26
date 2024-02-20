@@ -1,6 +1,6 @@
 #%Module1.0
-## Module file created by Luis Cebamanos, EPCC
-## Date: 30 July 2020
+## Module file created by M Bareford, EPCC
+## Date: 15 February 2024
 ##
 
 
@@ -11,9 +11,9 @@ puts stderr "The UDUNITS-2 package provides support for units of physical quanti
 }
 
 
-prepend-path PATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26/bin"
-prepend-path LIBRARY_PATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26/lib"
-prepend-path LD_LIBRARY_PATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26/lib"
-prepend-path CPATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26/include"
-prepend-path CMAKE_PREFIX_PATH "/mnt/lustre/indy2lfs/sw/udunits/2.2.26"
+prepend-path PATH "/work/y07/shared/cirrus-software/udunits/2.2.26/bin"
+prepend-path LIBRARY_PATH "/work/y07/shared/cirrus-software/udunits/2.2.26/lib"
+prepend-path LD_LIBRARY_PATH "/work/y07/shared/cirrus-software/udunits/2.2.26/lib"
+prepend-path CPATH "/work/y07/shared/cirrus-software/udunits/2.2.26/include"
+prepend-path CMAKE_PREFIX_PATH "/work/y07/shared/cirrus-software/udunits/2.2.26"
 

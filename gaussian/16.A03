@@ -23,7 +23,7 @@ set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set GAUSS_PRFX /mnt/lustre/indy2lfs/sw/Gaussian
+set GAUSS_PRFX /work/y07/shared/cirrus-software/Gaussian
 set GAUSS_CURPATH $GAUSS_PRFX/Gaussian16_RevA03
 
 setenv g16root $GAUSS_CURPATH

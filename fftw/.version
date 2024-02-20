@@ -1,2 +1,2 @@
 #%Module
-set ModulesVersion "3.3.8-intel19"
+set ModulesVersion "3.3.10-gcc10.2-mpt2.25"

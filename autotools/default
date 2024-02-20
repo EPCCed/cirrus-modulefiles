@@ -9,7 +9,7 @@ module load autoconf
 module load automake
 module load libtool
 
-# The text to print if someone types "module help libtool/2.4.6"
+# The text to print if someone types "module help autotools"
 proc ModulesHelp { } {
    puts stderr "This module loads autoconf, automake, and libtool."
 }

@@ -1,0 +1,16 @@
+#%Module1.0
+## Module created by Eleanor Broadway, EPCC
+##
+module-whatis "libtirpc@1.2.6"
+
+proc ModulesHelp { } {
+
+}
+
+set LIBTIRPC_CURPATH /work/y07/shared/cirrus-software/libtirpc/1.2.6/
+
+prepend-path CMAKE_PREFIX_PATH $LIBTIRPC_CURPATH
+prepend-path LIBRARY_PATH      $LIBTIRPC_CURPATH/lib/
+prepend-path LD_LIBRARY_PATH   $LIBTIRPC_CURPATH/lib/
+prepend-path PKG_CONFIG_PATH   $LIBTIRPC_CURPATH/lib/pkgconfig
+prepend-path CPATH             $LIBTIRPC_CURPATH/include

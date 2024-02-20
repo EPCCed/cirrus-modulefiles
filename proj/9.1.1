@@ -10,9 +10,9 @@ puts stderr "=========="
 puts stderr "PROJ is a generic coordinate transformation software that transforms geospatial coordinates"
 puts stderr "from one coordinate reference system to another. This includes cartographic projections"
 puts stderr "as well as geodetic transformations. See https://proj.org/index.html .\n"
-puts stderr "The PROJ binaries and libraries were built using GCC 8.2.0 and SQLite 3.40.1.\n"
+puts stderr "The PROJ binaries and libraries were built using GCC 10.2.0 and SQLite 3.40.1.\n"
 puts stderr "\tInstalled by: M. Bareford, EPCC"
-puts stderr "\tModified date: 25 Jan 2023\n"
+puts stderr "\tModified date: 16 Feb 2024\n"
 }
 
 
@@ -21,11 +21,10 @@ set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
 
-module use /mnt/lustre/indy2lfs/sw/modulefiles-development
 module load sqlite/3.40.1
 
 
-set PROJ_ROOT /mnt/lustre/indy2lfs/sw/proj/9.1.1
+set PROJ_ROOT /work/y07/shared/cirrus-software/proj/9.1.1
 
 setenv PROJ_DATA       $PROJ_ROOT/share/proj
 

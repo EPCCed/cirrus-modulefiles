@@ -11,14 +11,14 @@ proc ModulesHelp { } {
   puts stderr "For further details, see https://computing.llnl.gov/projects/spindle .\n"
   puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/utils/spindle/build_spindle_0.13_cirrus_gcc10.md \n"
   puts stderr "Installed by: M. Bareford, EPCC"
-  puts stderr "Date: 29 August 2023\n"
+  puts stderr "Date: 16 February 2024\n"
 }
 
 set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set SPINDLE_ROOT /mnt/lustre/indy2lfs/sw/spindle/0.13
+set SPINDLE_ROOT /work/y07/shared/cirrus-software/spindle/0.13
 
 prepend-path PATH $SPINDLE_ROOT/bin
 prepend-path CPATH $SPINDLE_ROOT/include

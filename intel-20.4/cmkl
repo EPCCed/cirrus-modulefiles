@@ -9,7 +9,7 @@ proc ModulesHelp { } {
 
 set sys         [uname sysname]
 set mach        [uname machine]
-set base        /mnt/lustre/indy2lfs/sw/intel
+set base        /work/y07/shared/cirrus-software/intel
 set ver         compilers_and_libraries_2020.4.304
 set path        $base/$ver
 

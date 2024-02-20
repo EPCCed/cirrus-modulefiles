@@ -7,7 +7,7 @@ proc ModulesHelp { } {
 }
 
 # Set the path to this installation
-set BINUTILS_CURPATH   /lustre/sw/binutils/2.36
+set BINUTILS_CURPATH   /work/y07/shared/cirrus-software/binutils/2.36
 
 prepend-path PATH               $BINUTILS_CURPATH/bin
 prepend-path MANPATH            $BINUTILS_CURPATH/share/man

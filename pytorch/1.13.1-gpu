@@ -2,22 +2,21 @@
 #
 
 # Clashes
-conflict horovod
 conflict pytorch
 conflict tensorflow
 
 proc ModulesHelp { } {
   puts stderr "PyTorch 1.13.1-gpu"
   puts stderr "==================\n"
-  puts stderr "A Python virtual environment (venv) that provides Horovod 0.26.1, a distributed deep learning training framework,"
+  puts stderr "A Python virtual environment (venv) that provides Horovod 0.28.1, a distributed deep learning training framework,"
   puts stderr "one that includes PyTorch 1.13.1 (https://pytorch.org/).\n"
   puts stderr "This venv is an extension of the Miniconda3 (Python 3.10.8) environment provided by the \"python/3.10.8-gpu\" module."
-  puts stderr "MPI comms is handled by the Horovod 0.26.1 package (built with NCCL 2.11.4).\n"
+  puts stderr "MPI comms is handled by the Horovod 0.28.1 package (built with NCCL 2.11.4).\n"
   puts stderr "After you have loaded this module, simply run \"pip list\" to see the full package list.\n"
   puts stderr "Please note, this module can only be used on the Cirrus GPU nodes.\n"
-  puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/pyenvs/horovod/build_horovod_0.26.1_cirrus_gpu.md \n"
+  puts stderr "Build instructions: https://github.com/hpc-uk/build-instructions/blob/main/pyenvs/pytorch/build_pytorch_1.13.1_cirrus_gpu.md \n"
   puts stderr "Installed by: M. Bareford, EPCC"
-  puts stderr "Date: 17 January 2022\n"
+  puts stderr "Date: 15 February 2024\n"
 }
 
 set _module_name  [module-info name]
@@ -29,23 +28,19 @@ set MINICONDA3_PYTHON_LABEL python3.10
 
 set CUDA_VERSION 11.6
 set CUDNN_VERSION 8.6.0
-set HOROVOD_VERSION 0.26.1-gpu
+set PYTORCH_VERSION 1.13.1-gpu
 set TENSORRT_VERSION 8.4.3.1-u2
 set LIBSNDFILE_VERSION 1.0.28
 
-set HOROVOD_ROOT /mnt/lustre/indy2lfs/sw/horovod/$HOROVOD_VERSION/python/$MINICONDA3_PYTHON_VERSION
-set HOROVOD_BIN $HOROVOD_ROOT/bin
-set HOROVOD_LIB $HOROVOD_ROOT/lib
+set PYTORCH_ROOT /work/y07/shared/cirrus-software/pytorch/$PYTORCH_VERSION/python/$MINICONDA3_PYTHON_VERSION
+set PYTORCH_BIN $PYTORCH_ROOT/bin
+set PYTORCH_LIB $PYTORCH_ROOT/lib
 
 module load nvidia/cudnn/$CUDNN_VERSION-cuda-$CUDA_VERSION
 module load nvidia/tensorrt/$TENSORRT_VERSION
 module load python/$MINICONDA3_PYTHON_VERSION-gpu
 module load libsndfile/$LIBSNDFILE_VERSION
 
-prepend-path PATH $HOROVOD_BIN
-
-prepend-path LIBRARY_PATH $HOROVOD_LIB
-
-prepend-path LD_LIBRARY_PATH $HOROVOD_LIB
-
-prepend-path PYTHONPATH $HOROVOD_LIB/$MINICONDA3_PYTHON_LABEL/site-packages
+prepend-path PATH $PYTORCH_BIN
+prepend-path LD_LIBRARY_PATH $PYTORCH_LIB
+prepend-path PYTHONPATH $PYTORCH_LIB/$MINICONDA3_PYTHON_LABEL/site-packages

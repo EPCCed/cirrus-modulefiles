@@ -17,9 +17,9 @@ proc ModulesHelp { } {
   puts stderr "\tInstalled by: Adrian Jackson, EPCC"
 }
 
-set base        /mnt/lustre/indy2lfs/sw/valgrind
-set ver         3.22.0
-set path        $base
+set base        /work/y07/shared/cirrus-software/valgrind/
+set ver         3.22
+set path        $base/$ver
 
 prepend-path PATH	      $path/bin
 prepend-path LD_LIBRARY_PATH  $path/lib/valgrind

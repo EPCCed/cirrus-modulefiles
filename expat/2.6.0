@@ -1,0 +1,22 @@
+#%Module1.0
+## Module file created by Eleanor Broadway, EPCC
+## Date: 14th Feb 2024
+##
+
+
+module-whatis "This is Expat, a C library for parsing XML, started by James Clark in 1997. Expat is a stream-oriented XML parser. This means that you register handlers with the parser before starting the parse. These handlers are called when the parser discovers the associated structures in the document being parsed. A start tag is an example of the kind of structures for which you may register handlers."
+
+proc ModulesHelp { } {
+puts stderr "The Expat library is a C library for parsing XML"
+}
+
+set ROOT /work/y07/shared/cirrus-software/expat/2.6.0 
+
+setenv EXPAT_DIR $ROOT
+
+prepend-path PATH $ROOT/bin
+prepend-path LIBRARY_PATH $ROOT/lib
+prepend-path LD_LIBRARY_PATH $ROOT/lib
+prepend-path CPATH $ROOT/include
+prepend-path PKG_CONFIG_PATH $ROOT/lib/pkgconfig
+prepend-path CMAKE_PREFIX_PATH $ROOT

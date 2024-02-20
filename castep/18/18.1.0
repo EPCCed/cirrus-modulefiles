@@ -10,19 +10,21 @@ puts stderr "\t=============\n"
 puts stderr "\tThis module sets up your environment to access CASTEP 18.1.0."
 puts stderr "\tOnce loaded you can access the CASTEP executable using the"
 puts stderr "\tname \'castep.mpi\'.\n"
-puts stderr "\tInstalled by: A. Turner, EPCC"
-puts stderr "\tDate: 29 May 2018\n"
+puts stderr "\tInstalled by: L. Parisi, EPCC"
+puts stderr "\tDate: 14 Feb 2024\n"
 }
 
 set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set CASTEP_CURPATH /mnt/lustre/indy2lfs/sw/CASTEP/18.1.0-intel17
+set CASTEP_CURPATH /work/y07/shared/cirrus-software/castep/install/18.1-intel20.4
 
-module load mpt
-module load intel-compilers-19
-module load intel-cmkl-19
+module load intel-20.4/compilers
+module load intel-20.4/mpi 
+module load fftw/3.3.10-intel20.4
+module load intel-20.4/cmkl
+#module load python/3.9.13
 
 prepend-path  PATH   $CASTEP_CURPATH/bin
 setenv CASTEP $CASTEP_CURPATH

@@ -1,0 +1,54 @@
+#%Module
+#
+# Module definition for Star CCM+ 16.02.009 (aka 2021.1.1)
+#
+# wlucas@epcc.ed.ac.uk  29 June 2021
+
+conflict starccm+
+
+proc ModulesHelp { } {
+
+ puts stderr "\tSTAR-CCM+ 16.02.009"
+ puts stderr "\t===================\n"
+ puts stderr "\tThis module provides access to Star-CCM+ 16.02.009,"
+ puts sterrr "\talso known as 2021.1.1."
+ puts stderr "\tFor access to STAR-CMM+ please contact the Cirrus  helpdesk"
+ puts stderr "\tat support@cirrus.ac.uk\n"
+ puts stderr "\tInstalled by: William Lucas, EPCC"
+ puts stderr "\tDate: 29 June 2021\n"
+}
+
+if { [ module-info mode load ] } {
+    puts stderr "STAR-CCM+ users must have a valid STAR-CCM+ license."
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+# Set the path to this installation
+
+set STARCCM_DIR /work/y07/shared/cirrus-software/starccm+/16.02.009/STAR-CCM+16.02.009
+
+module load mpt/2.25
+setenv SGI_MPI_HOME /opt/hpe/hpc/mpt/mpt-2.25/
+
+module load libtirpc/1.2.6
+module load libnsl/1.3.0
+
+# Make sure the binaries are added to PATH
+# Some care in the order of LD_LIBRARY_PATH may be required
+# as some .so file names are replicated within the installation
+# e.g., libstdc++ occurs in various versions...
+
+prepend-path  PATH            $STARCCM_DIR/star/bin
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/mkl/2017.2-cda-001/linux/lib/intel64
+#prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/heedsapi/2020.1.2.12283/linux-x86_64/LX64
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/boost/1_68_0d/linux-x86_64/gnu7.1
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/vtk/starvtk-6.1.0-cda-015/linux-x86_64-2.12/gnu7.1/lib/release
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/glew/2.1.0/linux-x86_64-2.12/gnu7.1
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/embree/3.5.2-avx512/linux-x86_64-2.12/intel18.0.3
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/tbb/2017_U6b/linux-x86_64-2.12/gnu7.1
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/star/lib/linux-x86_64-2.17/gnu9.2/lib
+prepend-path  LD_LIBRARY_PATH $STARCCM_DIR/star/lib/linux-x86_64-2.17/system/gnu9.2-64
+

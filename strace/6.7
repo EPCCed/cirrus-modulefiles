@@ -1,0 +1,22 @@
+#%Module
+#
+ 
+# Clashes
+conflict strace
+
+proc ModulesHelp { } {
+puts stderr "strace"
+puts stderr "====================\n"
+puts stderr "This module sets up your environment to access strace. Required for the compute nodes."
+puts stderr "\tInstalled by: A. Jackson, EPCC"
+puts stderr "\tDate: February 2024\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set STRACE_CURPATH /work/y07/shared/cirrus-software/strace/6.7
+
+prepend-path  PATH   $STRACE_CURPATH/bin
+

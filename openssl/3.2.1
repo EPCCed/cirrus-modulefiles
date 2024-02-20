@@ -1,0 +1,20 @@
+#%Module1.0
+module-whatis "openssl @3.2.1"
+
+proc ModulesHelp { } {
+puts stderr "OpenSSL is a toolkit for general-purpose cryptography and secure communication."
+}
+
+conflict openssl
+
+set ROOT /work/y07/shared/cirrus-software/openssl/3.2.1
+
+prepend-path PATH               $ROOT/bin
+prepend-path CPATH              $ROOT/include
+prepend-path MANPATH            $ROOT/share/man
+
+prepend-path LIBRARY_PATH       $ROOT/lib64
+prepend-path LD_LIBRARY_PATH    $ROOT/lib64
+prepend-path LD_RUN_PATH        $ROOT/lib64
+
+prepend-path PKG_CONFIG_PATH    $ROOT/lib64/pkgconfig

@@ -1,0 +1,14 @@
+#%Module1.0
+## Module file created by Adrian Jackson, EPCC
+## Date: February 2024
+##
+module-whatis "OneAPI"
+
+proc ModulesHelp { } {
+puts stderr "OneAPI packages Intel's latest compiler and development tools"
+puts stderr "This module loads the OneAPI modules for you to load as required"
+}
+
+conflict oneapi
+
+module use /work/y07/shared/cirrus-software/oneapi/modules 

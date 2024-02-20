@@ -9,7 +9,7 @@ proc ModulesHelp { } {
 
 set sys         [uname sysname]
 set mach        [uname machine]
-set swbase      /mnt/lustre/indy2lfs/sw/intel
+set swbase      /work/y07/shared/cirrus-software/intel
 set ver         advisor_2020.3.0.607294
 set path        $swbase/$ver
 

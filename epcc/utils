@@ -10,16 +10,15 @@ proc ModulesHelp { } {
   puts stderr "=====================\n"
 
   puts stderr "Utilities for Cirrus. Being:\n"
-  puts stderr "* emacs-26.3 (--without-all --without-x --without-pop)"
   puts stderr "* git"
   puts stderr "\n"
 
   puts stderr "Installed: 24 June 2020"
+  puts stderr "Updated: 15 Feb 2024
   puts stderr "Installed by: Kevin Stratford, EPCC"
 
 }
 
-# prepend-path PATH "/mnt/lustre/indy2lfs/sw/epcc-utils/bin"
 module load git/2.37.3
 
 if { [module-info mode remove] } {

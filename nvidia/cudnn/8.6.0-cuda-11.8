@@ -1,0 +1,31 @@
+#%Module
+# 
+# Module definition for cuDNN 8.6.0 (CUDA 11.8)
+#
+# M. Bareford 15 February 2024
+
+# Clashes
+conflict nvidia/cudnn
+
+# The text to print if someone types "module help nvidia/cudnn/8.6.0-cuda-11.8"
+proc ModulesHelp { } {
+puts stderr "\tcuDNN 8.6.0 (CUDA 11.8)"
+puts stderr "\t=======================\n"
+puts stderr "\tThe NVIDIA CUDA Deep Neural Network library (cuDNN) is a GPU-accelerated library of primitives for deep neural networks.\n"
+puts stderr "\tInstalled by M. Bareford, EPCC"
+puts stderr "\tDate: February 2024\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+set ROOT /work/y07/shared/cirrus-software/nvidia/cudnn/8.6.0-cuda-11.8
+
+setenv CUDNN_ROOT $ROOT
+
+prepend-path CPATH $ROOT/include
+
+prepend-path LIBRARY_PATH $ROOT/lib
+prepend-path LD_LIBRARY_PATH $ROOT/lib
+prepend-path LD_RUN_PATH $ROOT/lib

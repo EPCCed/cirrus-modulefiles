@@ -1,0 +1,32 @@
+#%Module1.0
+## Installed by Luca Parisi, EPCC
+## Date: 15 February 2024
+##
+module-whatis "r @4.3.2"
+
+proc ModulesHelp { } {
+puts stderr "R is 'GNU S', a freely available language and environment for"
+puts stderr "statistical computing and graphics which provides a wide variety of"
+puts stderr "statistical and graphical techniques: linear and nonlinear modelling,"
+puts stderr "statistical tests, time series analysis, classification, clustering,"
+puts stderr "etc. Please consult the R project homepage for further information."
+}
+
+conflict R
+
+if ![ is-loaded gcc/10.2.0 ] {
+    module load gcc/10.2.0
+}
+
+if ![ is-loaded java/jdk-20.0.1 ] {
+    module load java/jdk-20.0.1
+}
+
+set R_CURPATH /mnt/lustre/e1000/home/y07/shared/cirrus-software/R/4.3.2
+
+prepend-path PATH                $R_CURPATH/bin/
+prepend-path CMAKE_PREFIX_PATH   $R_CURPATH/
+prepend-path MANPATH             $R_CURPATH/share/man
+prepend-path LIBRARY_PATH        $R_CURPATH/rlib/R/lib
+prepend-path LD_LIBRARY_PATH     $R_CURPATH/rlib/R/lib
+prepend-path CPATH               $R_CURPATH/rlib/R/include

@@ -1,0 +1,29 @@
+#%Module
+#
+# Module definition for nco 4.9.7
+#
+# William Lucas, EPCC, 15 February 2024
+
+# Clashes
+#
+
+module load netcdf-parallel/4.9.2-intel20-mpt225
+module load gsl 
+
+# The text to print if someone types "module help ncview/5.1.9"
+proc ModulesHelp { } {
+puts stderr "\tNCO 5.1.9"
+puts stderr "\t==============\n"
+puts stderr "\tThis module sets up your environment to access NCO 5.1.9"
+puts stderr "\tInstalled by: William Lucas, EPCC"
+puts stderr "\tDate: 15 February 2024\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+
+# Make sure the binaries are added to PATH
+prepend-path  PATH              /work/y07/shared/cirrus-software/nco/5.1.9/bin
+prepend-path  LD_LIBRARY_PATH   /work/y07/shared/cirrus-software/nco/5.1.9/lib

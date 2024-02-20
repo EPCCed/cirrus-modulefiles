@@ -1,0 +1,49 @@
+#%Module
+# 
+# Module definition for OpenMPI 5.0.0
+#
+# M. Bareford Feb 2024
+
+# Clashes
+conflict openmpi
+
+# The text to print if someone types "module help openmpi/5.0.0"
+proc ModulesHelp { } {
+puts stderr "\tOpenMPI 5.0.0"
+puts stderr "\t=============\n"
+puts stderr "\tInstalled by L. Parisi, EPCC"
+puts stderr "\tCompiled with gcc 10.2.0 and linked with"
+puts stderr "\tPMIX 4.2.7, HWLOC 2.9.3, UCX 1.15.0, libevent 2.1.12"
+puts stderr "\tDate: Feb 2024\n"
+}
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys        [uname sysname]
+
+if ![ is-loaded gcc ] {
+    module load gcc/10.2.0
+}
+
+
+set ROOT /work/y07/shared/cirrus-software
+set OPENMPI_ROOT $ROOT/openmpi/5.0.0
+set UCX_ROOT $ROOT/ucx/1.15.0
+set PMIX_ROOT $ROOT/pmix/pmix-4.2.7-gcc-10.2.0
+set LIBEVENT_ROOT $ROOT/libevent/2.1.12
+
+prepend-path PATH $OPENMPI_ROOT/bin
+prepend-path CPATH $OPENMPI_ROOT/include
+prepend-path MANPATH $OPENMPI_ROOT/share/man
+
+prepend-path LIBRARY_PATH $OPENMPI_ROOT/lib:$UCX_ROOT/lib:$PMIX_ROOT/lib:$LIBEVENT_ROOT/lib
+prepend-path LD_LIBRARY_PATH $OPENMPI_ROOT/lib:$UCX_ROOT/lib:$PMIX_ROOT/lib:$LIBEVENT_ROOT/lib
+prepend-path LD_RUN_PATH $OPENMPI_ROOT/lib:$UCX_ROOT/lib:$PMIX_ROOT/lib:$LIBEVENT_ROOT/lib
+
+prepend-path PKG_CONFIG_PATH $OPENMPI_ROOT/lib/pkgconfig
+
+setenv OMPI_MCA_opal_common_ucx_opal_mem_hooks 1
+setenv OMPI_MCA_UCX_MEM_MMAP_HOOK_MODE none
+setenv OMPI_MCA_btl_openib_allow_ib 1
+setenv OMPI_MCA_pml ucx
+setenv OMPI_MCA_btl_openib_warn_default_gid_prefix 0

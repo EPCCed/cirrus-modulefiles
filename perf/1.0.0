@@ -8,6 +8,6 @@ puts stderr ""
 
 }
 
-set PERF_PATH /mnt/lustre/indy2lfs/sw/perf
+set PERF_PATH /work/y07/shared/cirrus-software/perf
 
 prepend-path PATH               $PERF_PATH/bin

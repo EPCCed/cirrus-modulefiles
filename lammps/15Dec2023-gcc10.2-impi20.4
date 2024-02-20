@@ -1,0 +1,30 @@
+#%Module
+#
+ 
+# Clashes
+conflict lammps
+
+proc ModulesHelp { } {
+puts stderr "LAMMPS v02Aug2023 Update 2"
+puts stderr "================\n"
+puts stderr "This module sets up your environment to access LAMMPS 2Aug2023u2.\n"
+puts stderr "\tInstalled by: Rui Apóstolo, EPCC"
+puts stderr "\tDate: 2024-02-15\n"
+}
+
+module load 
+if ![ is-loaded fftw/3.3.10-gcc10.2-impi20.4 ] {
+    module load fftw/3.3.10-gcc10.2-impi20.4
+}
+
+module load 
+if ![ is-loaded intel-20.4/cmkl ] {
+    module load intel-20.4/cmkl
+}
+
+set LAMMPS_ROOT /work/y07/shared/cirrus-software/lammps/15Dec2023_gcc10.2_impi20.4
+prepend-path PATH $LAMMPS_ROOT/bin
+prepend-path MANPATH $LAMMPS_ROOT/share/man
+prepend-path LD_LIBRARY_PATH $LAMMPS_ROOT/lib64
+
+setenv LAMMPS_POTENTIALS $LAMMPS_ROOT/share/lammps/potentials
