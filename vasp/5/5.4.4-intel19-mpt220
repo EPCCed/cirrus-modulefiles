@@ -42,7 +42,7 @@ set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
 set VASP5_LEVEL 5.4.4-intel19-mpt220
-set VASP5_CURPATH /mnt/lustre/indy2lfs/sw/vasp5/$VASP5_LEVEL
+set VASP5_CURPATH /work/y07/shared/cirrus-software/vasp5/$VASP5_LEVEL
 
 prepend-path  PATH              $VASP5_CURPATH/bin
 setenv VASP5 $VASP5_CURPATH
