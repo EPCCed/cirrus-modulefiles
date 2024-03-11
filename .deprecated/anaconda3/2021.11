@@ -1,0 +1,28 @@
+#%Module
+#
+# Module definition for Anaconda Python 3 version
+#
+conflict anaconda3
+
+proc ModulesHelp { } {
+     puts stderr "Anaconda, Python 3 2021.11"
+     puts stderr "==================\n"
+     puts stderr "The Anaconda scientific Python distribution. This module loads"
+     puts stderr "the Python 3 version of the Anaconda scientific Python."
+     puts stderr "The standard packages listed at:\n"
+     puts stderr "\t* http://docs.continuum.io/anaconda/pkg-docs.html\n"
+     puts stderr "are installed along with custom additions.\n"
+     puts stderr "The full list of packages installed can be found by loading"
+     puts stderr "this module and running the following command:\n"
+     puts stderr "\t conda list\n"
+     puts stderr "Note: the executable is called 'python3'\n"
+     puts stderr "Installed by: N. Mannall"
+     puts stderr "        Date: 26 Febraury 2024\n"
+}
+
+set ANACONDA_CURPATH /work/y07/shared/cirrus-software/anaconda/anaconda3-2021.11
+
+prepend-path PATH $ANACONDA_CURPATH/bin
+
+setenv ANACONDA_LIB $ANACONDA_CURPATH/lib
+setenv ANACONDADIR $ANACONDA_CURPATH

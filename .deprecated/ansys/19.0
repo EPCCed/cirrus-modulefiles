@@ -1,0 +1,18 @@
+#%Module
+#
+# Module definition for ANSYS Fluent
+#
+ 
+# Clashes
+#conflict 
+
+proc ModulesHelp { } {
+puts stderr "ANSYS Fluent 19.0"
+puts stderr "==============\n"
+puts stderr "\tInstalled by: E.Breitmoser, EPCC"
+puts stderr "\tDate: 10th May 2018\n"
+}
+
+#module load mpt
+set ANSYS_CURPATH /mnt/lustre/indy2lfs/sw/ansys/v190
+prepend-path PATH $ANSYS_CURPATH/fluent/bin

@@ -1,0 +1,21 @@
+#%Module######################################################################
+##
+##      Altair HW Solvers modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths for Altair HW Solvers 13.0"
+}
+
+set base        /mnt/lustre/indy2lfs/sw/altair
+set ver         13.0
+set mpiver      14.0
+set path        $base/$ver
+set mpipath     $base/$mpiver
+
+   prepend-path		ALTAIR_LICENSE_PATH 	6200@indy2-login0
+   prepend-path         PATH			$path/altair/scripts
+   prepend-path         PATH			$mpipath/altair/mpi/linux64/intel-mpi/intel64/bin
+   prepend-path		LD_LIBRARY_PATH		$path/altair/hwsolvers/common/bin/linux64
+   prepend-path         LD_LIBRARY_PATH         $mpipath/altair/mpi/linux64/intel-mpi/intel64/lib
+   setenv               ALTAIR_HOME             $path
+
