@@ -6,29 +6,25 @@ conflict lammps
 conflict lammps-gpu
 
 proc ModulesHelp { } {
-puts stderr "LAMMPS v02Aug2023 Update 2"
-puts stderr "=========================="
+puts stderr "LAMMPS v02Aug2023 Update 2 (GPU Build)"
+puts stderr "======================================"
 puts stderr "This module sets up your environment to access LAMMPS 2Aug2023u2."
 puts stderr "https://docs.lammps.org/Manual.html"
 puts stderr "See https://docs.cirrus.ac.uk/software-packages/lammps/"
 puts stderr ""
 puts stderr "Provides:"  
-puts stderr " lmp              - OMP/MPI aware"
+puts stderr " lmp              - OMP/MPI/CUDA aware"
 puts stderr ""
 puts stderr "Build Time Loaded Modulefiles:"
 puts stderr "1) git/2.37.3            6) intel-license"
 puts stderr "2) epcc/utils            7) intel-20.4/mpi"
 puts stderr "3) epcc/setup-env        8) intel-20.4/cmkl"
 puts stderr "4) cmake/3.25.2          9) fftw/3.3.10-gcc10.2-impi20.4"
-puts stderr "5) gcc/10.2.0(default)"
+puts stderr "5) gcc/10.2.0(default)   10) nvidia/nvhpc-byo-compiler/22.11"
 puts stderr ""
 puts stderr "\tInstalled by: Rui Apóstolo, EPCC"
-puts stderr "\tDate: 2024-02-15"
+puts stderr "\tDate: 2024-02-19"
 }
-
-set _module_name  [module-info name]
-set is_module_rm  [module-info mode remove]
-set sys           [uname sysname]
 
 if ![ is-loaded gcc/10.2.0 ] {
     module load gcc/10.2.0
@@ -42,8 +38,12 @@ if ![ is-loaded intel-20.4/cmkl ] {
 if ![ is-loaded fftw/3.3.10-gcc10.2-impi20.4 ] {
     module load fftw/3.3.10-gcc10.2-impi20.4
 }
+if ![ is-loaded nvidia/nvhpc-byo-compiler/22.11 ] {
+    module load nvidia/nvhpc-byo-compiler/22.11
+}
 
-set LAMMPS_ROOT /work/y07/shared/cirrus-software/lammps/15Dec2023_gcc10.2_impi20.4
+set LAMMPS_ROOT /work/y07/shared/cirrus-software/lammps/15Dec2023_gcc10.2_impi20.4_cuda11.8
+
 prepend-path PATH $LAMMPS_ROOT/bin
 prepend-path MANPATH $LAMMPS_ROOT/share/man
 append-path LD_LIBRARY_PATH $LAMMPS_ROOT/lib64

@@ -16,16 +16,16 @@ puts stderr "transition metal complexes, and their spectroscopic properties."
 puts stderr "ORCA is developed in the research group of Frank Neese. The"
 puts stderr "free version is available only for academic use at academic institutions.\n"
 puts stderr "\tInstalled by: A. Turner, EPCC"
-puts stderr "\t        Date: 19 January 2023\n"
+puts stderr "\t        Date: 11 March 2024\n"
 }
 
 set _module_name  [module-info name]
 set is_module_rm  [module-info mode remove]
 set sys        [uname sysname]
 
-set ORCA_CURPATH /mnt/lustre/indy2lfs/sw/orca/5.0.3-openmpi4.1
+set ORCA_CURPATH /work/y07/shared/orca/5.0.3-openmpi4.1
 
-module load openmpi/4.1.4
+module load openmpi/4.1.6
 
 setenv ORCADIR $ORCA_CURPATH
 prepend-path  PATH   $ORCA_CURPATH
