@@ -1,0 +1,60 @@
+#%Module
+#
+
+# Clashes
+conflict gromacs
+
+proc ModulesHelp { } {
+puts stderr "Gromacs 2023.4 (GPU build)"
+puts stderr "=========================="
+puts stderr ""  
+puts stderr "See https://manual.gromacs.org/current/index.html"
+puts stderr "See https://docs.cirrus.ac.uk/software-packages/gromacs/"
+puts stderr ""
+puts stderr "Provides:"  
+puts stderr " gmx              - Single precision serial version."
+puts stderr " gmx_mpi          - Single precision MPI version."
+puts stderr ""
+puts stderr "Build Time Loaded Modulefiles:"
+puts stderr "1) git/2.37.3            6) intel-license"
+puts stderr "2) epcc/utils            7) intel-20.4/mpi"
+puts stderr "3) epcc/setup-env        8) intel-20.4/cmkl"
+puts stderr "4) cmake/3.25.2          9) fftw/3.3.10-gcc10.2-impi20.4"
+puts stderr "5) gcc/10.2.0(default)   10) nvidia/nvhpc-byo-compiler/22.11"
+puts stderr ""
+puts stderr "\tInstalled by: Rui Apóstolo, EPCC"
+puts stderr "\tDate: 2024-02-21"
+}
+
+
+set _module_name  [module-info name]
+set is_module_rm  [module-info mode remove]
+set sys           [uname sysname]
+
+if ![ is-loaded gcc/10.2.0 ] {
+    module load gcc/10.2.0
+}
+if ![ is-loaded intel-20.4/mpi ] {
+    module load intel-20.4/mpi
+}
+if ![ is-loaded intel-20.4/cmkl ] {
+    module load intel-20.4/cmkl
+}
+if ![ is-loaded fftw/3.3.10-gcc10.2-impi20.4 ] {
+    module load fftw/3.3.10-gcc10.2-impi20.4
+}
+if ![ is-loaded nvidia/nvhpc-byo-compiler/22.11 ] {
+    module load nvidia/nvhpc-byo-compiler/22.11
+}
+
+set GMX_LEVEL 2023.4
+
+set GMX_CURPATH /work/y07/shared/cirrus-software/gromacs/${GMX_LEVEL}-gpu
+setenv GMX_DIR $GMX_CURPATH
+
+prepend-path PATH $GMX_CURPATH/bin
+prepend-path MANPATH $GMX_CURPATH/share/man
+
+append-path LD_LIBRARY_PATH $GMX_CURPATH/lib64
+setenv GMX_INCLUDE_OPTS $GMX_CURPATH/include
+setenv GMXLIB $GMX_CURPATH/share/gromacs/top
